@@ -16,11 +16,11 @@ class _BarNavegationHomeState extends State<BarNavegationHome> {
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
     Text(
-      'Index 1: Business',
+      'Index 2: Perfil',
       style: optionStyle,
     ),
     Text(
-      'Index 2: School',
+      'Index 3: Example',
       style: optionStyle,
     ),
   ];
@@ -44,16 +44,18 @@ class _BarNavegationHomeState extends State<BarNavegationHome> {
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
+            icon: Icon(Icons.account_circle),
             label: 'Perfil',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
+            icon: Icon(Icons.logout),
             label: 'Salir',
           ),
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.amber[800],
+        selectedItemColor: Colors.black,
+        unselectedItemColor: Colors.grey[800]!,
+        backgroundColor: const Color.fromRGBO(196, 196, 196, 1),
         onTap: _onItemTapped,
       ),
     );
