@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
+import 'package:flutter_banca_movil/componentes/registro.dart';
 
 //import 'componentes/PagExample1.dart';
 //import 'componentes/PagExample2.dart';
@@ -157,7 +158,14 @@ class TextFieldUserPass extends StatelessWidget {
                 const SizedBox(height: 5),
                 Center(
                   child: TextButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const PagRegistro(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       "Registrate",
                       style: TextStyle(color: Colors.black, fontSize: 18),
