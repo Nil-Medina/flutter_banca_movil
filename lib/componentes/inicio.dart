@@ -273,7 +273,7 @@ class BodyCards extends StatelessWidget {
                 ),
                 title: const Text(
                   "CUENTA FREE",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.5),
                 ),
                 subtitle: const Text(
                   'Saldo Disponible: S/.0.00',
