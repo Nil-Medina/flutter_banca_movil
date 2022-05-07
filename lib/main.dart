@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banca_movil/componentes/PageExample1.dart';
 import 'package:flutter_banca_movil/componentes/inicio.dart';
 
 //import 'componentes/PagExample1.dart';
@@ -44,8 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          /*Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Page1()));*/
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const page1()));
         },
         backgroundColor: Colors.black,
         tooltip: 'call',
