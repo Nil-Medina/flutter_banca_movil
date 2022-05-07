@@ -121,74 +121,6 @@ class TitleBody extends StatelessWidget {
   }
 }
 
-class BodyCards extends StatelessWidget {
-  const BodyCards({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      width: 300,
-      /*decoration: const BoxDecoration(
-        color: Colors.grey,
-      ),*/
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: const <Widget>[
-          Card(
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child: ListTile(
-                //tileColor: Color(0xFAA35678),
-                leading: Icon(
-                  Icons.credit_card,
-                  size: 40,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  "CUENTA FREE",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                subtitle: Text(
-                  'Saldo Disponible: S/.0.00',
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-            ),
-          ),
-          SizedBox(
-            height: 10,
-          ),
-          Card(
-            child: Padding(
-              padding: EdgeInsets.all(5),
-              child: ListTile(
-                tileColor: Colors.white,
-                //shape: Border.all(color: Colors.grey, width: 5),
-                leading: Icon(
-                  Icons.add_card,
-                  size: 40,
-                  color: Colors.black,
-                ),
-                title: Text(
-                  "CUENTA PREMIUM",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                subtitle: Text(
-                  'Apertura tu Cuenta Aqui',
-                  style: TextStyle(fontSize: 17),
-                ),
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
 class BodyButtoms extends StatelessWidget {
   const BodyButtoms({
     Key? key,
@@ -272,6 +204,74 @@ class BodyButtoms extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+class BodyCards extends StatelessWidget {
+  const BodyCards({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 300,
+      width: 300,
+      /*decoration: const BoxDecoration(
+        color: Colors.grey,
+      ),*/
+      padding: const EdgeInsets.all(10),
+      child: Column(
+        children: const <Widget>[
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(5),
+              child: ListTile(
+                //tileColor: Color(0xFAA35678),
+                leading: Icon(
+                  Icons.credit_card,
+                  size: 40,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  "CUENTA FREE",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                subtitle: Text(
+                  'Saldo Disponible: S/.0.00',
+                  style: TextStyle(fontSize: 17),
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Card(
+            child: Padding(
+              padding: EdgeInsets.all(5),
+              child: ListTile(
+                tileColor: Colors.white,
+                //shape: Border.all(color: Colors.grey, width: 5),
+                leading: Icon(
+                  Icons.add_card,
+                  size: 40,
+                  color: Colors.black,
+                ),
+                title: Text(
+                  "CUENTA PREMIUM",
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                ),
+                subtitle: Text(
+                  'Apertura tu Cuenta Aqui',
+                  style: TextStyle(fontSize: 17),
+                ),
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }

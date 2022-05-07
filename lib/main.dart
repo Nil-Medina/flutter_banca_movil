@@ -45,8 +45,8 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.white,
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const page1()));
+          /*Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const page1()));*/
         },
         backgroundColor: Colors.black,
         tooltip: 'call',
@@ -127,7 +127,8 @@ class TextFieldUserPass extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => const Home()),
+                      MaterialPageRoute(
+                          builder: (context) => const BarNavegationHome()),
                     );
                   },
                   child: Container(
