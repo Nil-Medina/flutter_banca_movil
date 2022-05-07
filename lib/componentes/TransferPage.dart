@@ -49,7 +49,7 @@ class PageTransfer extends StatelessWidget {
             width: 300,
             decoration: const BoxDecoration(color: Colors.white),
             child: Padding(
-              padding: const EdgeInsets.all(20),
+              padding: const EdgeInsets.all(18),
               child: Column(
                 children: <Widget>[
                   const TextField(
