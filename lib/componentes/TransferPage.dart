@@ -12,7 +12,10 @@ class PageTransfer extends StatelessWidget {
           alignment: const Alignment(-0.4, 0),
           child: const Text(
             "Zona de Transferencia",
-            style: TextStyle(color: Colors.white),
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 23,
+            ),
           ),
         ),
         backgroundColor: Colors.black,
