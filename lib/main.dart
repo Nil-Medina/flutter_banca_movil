@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banca_movil/componentes/PageExample1.dart';
-import 'package:flutter_banca_movil/componentes/inicio.dart';
+import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
 
 //import 'componentes/PagExample1.dart';
 //import 'componentes/PagExample2.dart';
