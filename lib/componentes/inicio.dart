@@ -118,7 +118,7 @@ class TitleBody extends StatelessWidget {
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: const [
+              children: const <Widget>[
                 Text(
                   "Mi Saldo",
                   style: TextStyle(
