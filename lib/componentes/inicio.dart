@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_banca_movil/componentes/TransferPage.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey[800]!,
-      body: const BodyHome(),
+    return const Scaffold(
+      //backgroundColor: Colors.grey[800]!,
+      backgroundColor: Colors.white,
+      body: BodyHome(),
     );
   }
 }
@@ -25,11 +27,11 @@ class BodyHome extends StatelessWidget {
       children: const <Widget>[
         TitleBody(),
         SizedBox(
-          height: 10,
+          height: 40,
         ),
         BodyButtoms(),
         SizedBox(
-          height: 5,
+          height: 20,
         ),
         BodyCards(),
       ],
@@ -45,11 +47,12 @@ class TitleBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 290,
+      height: 360,
       width: 300,
       alignment: Alignment.centerLeft,
       decoration: const BoxDecoration(
-        color: Color.fromRGBO(196, 196, 196, 1),
+        //color: Color.fromRGBO(196, 196, 196, 1),
+        color: Colors.black,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(50),
           bottomRight: Radius.circular(50),
@@ -59,7 +62,7 @@ class TitleBody extends StatelessWidget {
       child: Column(
         children: <Widget>[
           const SizedBox(
-            height: 40,
+            height: 30,
           ),
           Container(
             width: 400,
@@ -71,23 +74,44 @@ class TitleBody extends StatelessWidget {
               "BIENVENIDO A TU BANCA MOVIL",
               style: TextStyle(
                 fontSize: 24,
-                color: Colors.black,
+                color: Colors.white,
                 fontWeight: FontWeight.bold,
               ),
             ),
           ),
           const SizedBox(
-            height: 20,
+            height: 10,
           ),
-          const Text(
-            "Hola, Jean Pierre",
-            style: TextStyle(
-              color: Colors.black,
-              fontSize: 25,
+          Container(
+            width: 120,
+            height: 120,
+            decoration: const BoxDecoration(
+              color: Colors.transparent,
+              borderRadius: BorderRadius.all(
+                Radius.circular(100),
+              ),
+            ),
+            child: Center(
+              child: Image.asset(
+                "assets/images/perfilpreview.png",
+                width: 120,
+                height: 120,
+                scale: 1.0,
+              ),
             ),
           ),
           const SizedBox(
             height: 10,
+          ),
+          const Text(
+            "Jean Pierre Vasquez",
+            style: TextStyle(
+              color: Colors.white,
+              fontSize: 25,
+            ),
+          ),
+          const SizedBox(
+            height: 0,
           ),
           Container(
             height: 110,
@@ -99,17 +123,17 @@ class TitleBody extends StatelessWidget {
                   "Mi Saldo",
                   style: TextStyle(
                     fontSize: 25,
-                    color: Colors.black,
+                    color: Colors.white,
                   ),
                 ),
                 SizedBox(
                   height: 5,
                 ),
                 Text(
-                  "S/20 000",
+                  "S/20.000",
                   style: TextStyle(
                       fontSize: 35,
-                      color: Colors.black,
+                      color: Colors.white,
                       fontWeight: FontWeight.bold),
                 ),
               ],
@@ -132,7 +156,12 @@ class BodyButtoms extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         TextButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => const PageTransfer()),
+            );
+          },
           child: Container(
             height: 100,
             width: 140,
@@ -223,47 +252,63 @@ class BodyCards extends StatelessWidget {
       ),*/
       padding: const EdgeInsets.all(10),
       child: Column(
-        children: const <Widget>[
+        children: <Widget>[
           Card(
+            color: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Padding(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(3),
               child: ListTile(
-                //tileColor: Color(0xFAA35678),
-                leading: Icon(
+                tileColor: Colors.blue[300]!,
+                contentPadding: const EdgeInsets.all(12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+                leading: const Icon(
                   Icons.credit_card,
                   size: 40,
                   color: Colors.black,
                 ),
-                title: Text(
+                title: const Text(
                   "CUENTA FREE",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                subtitle: Text(
+                subtitle: const Text(
                   'Saldo Disponible: S/.0.00',
                   style: TextStyle(fontSize: 17),
                 ),
               ),
             ),
           ),
-          SizedBox(
-            height: 10,
+          const SizedBox(
+            height: 25,
           ),
           Card(
+            color: Colors.black,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(10),
+            ),
             child: Padding(
-              padding: EdgeInsets.all(5),
+              padding: const EdgeInsets.all(3),
               child: ListTile(
-                tileColor: Colors.white,
+                tileColor: Colors.tealAccent[400]!,
+                contentPadding: const EdgeInsets.all(12),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
                 //shape: Border.all(color: Colors.grey, width: 5),
-                leading: Icon(
+                leading: const Icon(
                   Icons.add_card,
                   size: 40,
                   color: Colors.black,
                 ),
-                title: Text(
+                title: const Text(
                   "CUENTA PREMIUM",
                   style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                subtitle: Text(
+                subtitle: const Text(
                   'Apertura tu Cuenta Aqui',
                   style: TextStyle(fontSize: 17),
                 ),

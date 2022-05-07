@@ -1,6 +1,7 @@
 //
 import 'package:flutter/material.dart';
 import 'package:flutter_banca_movil/componentes/inicio.dart';
+import 'package:flutter_banca_movil/componentes/perfil.dart';
 
 class BarNavegationHome extends StatefulWidget {
   const BarNavegationHome({Key? key}) : super(key: key);
@@ -15,10 +16,7 @@ class _BarNavegationHomeState extends State<BarNavegationHome> {
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
-    Text(
-      'Index 2: Perfil',
-      style: optionStyle,
-    ),
+    PagePerfil(),
     Text(
       'Index 3: Example',
       style: optionStyle,
@@ -40,15 +38,24 @@ class _BarNavegationHomeState extends State<BarNavegationHome> {
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.home),
+            icon: Icon(
+              Icons.home,
+              size: 35,
+            ),
             label: 'Inicio',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.account_circle),
+            icon: Icon(
+              Icons.account_circle,
+              size: 35,
+            ),
             label: 'Perfil',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.logout),
+            icon: Icon(
+              Icons.logout,
+              size: 35,
+            ),
             label: 'Salir',
           ),
         ],
