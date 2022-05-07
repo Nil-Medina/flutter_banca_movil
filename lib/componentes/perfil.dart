@@ -24,8 +24,9 @@ class PagePerfil extends StatelessWidget {
           Container(
             height: 550,
             width: 300,
-            child: Center(
-              child: const Text(
+            decoration: const BoxDecoration(color: Colors.grey),
+            child: const Center(
+              child: Text(
                 "Proximamente",
                 style: TextStyle(fontSize: 40),
               ),

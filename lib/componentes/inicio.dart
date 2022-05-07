@@ -130,7 +130,7 @@ class TitleBody extends StatelessWidget {
                   height: 5,
                 ),
                 Text(
-                  "S/20.000",
+                  "S/100.00",
                   style: TextStyle(
                       fontSize: 35,
                       color: Colors.white,
