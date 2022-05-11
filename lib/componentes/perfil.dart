@@ -38,7 +38,7 @@ class PagePerfil extends StatelessWidget {
               child: const Center(
                 child: Text(
                   "Proximamente",
-                  style: TextStyle(fontSize: 40),
+                  style: TextStyle(fontSize: 45),
                 ),
               ),
             ),
