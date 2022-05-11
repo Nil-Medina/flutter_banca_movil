@@ -12,7 +12,7 @@ class PagRegistro extends StatelessWidget {
           child: const Text(
             "CREAR CUENTA",
             style: TextStyle(
-              fontSize: 24,
+              fontSize: 25,
             ),
           ),
         ),
