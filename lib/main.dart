@@ -7,9 +7,6 @@ import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
 import 'package:flutter_banca_movil/componentes/registro.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-//import 'componentes/PagExample1.dart';
-//import 'componentes/PagExample2.dart';
-
 void main() {
   runApp(const MyApp());
 }
