@@ -1,7 +1,7 @@
-//
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
 import 'package:flutter_banca_movil/componentes/inicio.dart';
-import 'package:flutter_banca_movil/componentes/perfil.dart';
 
 class BarNavegation extends StatefulWidget {
   const BarNavegation({Key? key}) : super(key: key);
@@ -12,8 +12,6 @@ class BarNavegation extends StatefulWidget {
 
 class _BarNavegationState extends State<BarNavegation> {
   int _selectedIndex = 0;
-  static const TextStyle optionStyle =
-      TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
     //PagePerfil(),
