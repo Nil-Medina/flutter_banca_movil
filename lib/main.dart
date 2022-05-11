@@ -1,6 +1,12 @@
+import 'dart:async';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
 import 'package:flutter_banca_movil/componentes/registro.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:url_launcher/url_launcher_string.dart';
 
 //import 'componentes/PagExample1.dart';
 //import 'componentes/PagExample2.dart';
@@ -28,31 +34,123 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final number = "+01 311 6900";
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: ListView(
-        scrollDirection: Axis.vertical,
-        physics: const NeverScrollableScrollPhysics(),
-        children: const <Widget>[
-          TitleLogin(),
-          SizedBox(
-            height: 5,
-          ),
-          TextFieldUserPass(),
-        ],
-      ),
-      backgroundColor: Colors.white,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          /*Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const page1()));*/
-        },
-        backgroundColor: Colors.black,
-        tooltip: 'call',
-        child: const Icon(Icons.phone),
+    return WillPopScope(
+      onWillPop: () {
+        _closeapplication(context);
+        return Future.value(false);
+      },
+      child: Scaffold(
+        body: ListView(
+          scrollDirection: Axis.vertical,
+          physics: const NeverScrollableScrollPhysics(),
+          children: const <Widget>[
+            TitleLogin(),
+            SizedBox(
+              height: 5,
+            ),
+            TextFieldUserPass(),
+          ],
+        ),
+        backgroundColor: Colors.white,
+        floatingActionButton: FloatingActionButton(
+          onPressed: () async {
+            _backCall(context);
+            // ignore: deprecated_member_use
+            //await launch("tel:$number");
+          },
+          backgroundColor: Colors.black,
+          tooltip: 'call',
+          child: const Icon(Icons.phone),
+        ),
       ),
     );
+  }
+
+  void _backCall(BuildContext context) async {
+    final result = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          "INFORMACION",
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        content: const Text(
+            "Estas siendo redireccionado a nuestro canal Banca por Telefono."),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text(
+              "Cancelar",
+              style: TextStyle(
+                //fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text(
+              "Ok",
+              style: TextStyle(
+                //fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+    if (result ?? false) {
+      // ignore: deprecated_member_use
+      await launch("tel:$number");
+    }
+  }
+
+  void _closeapplication(BuildContext context) async {
+    final result = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("SALIDA"),
+        content: const Text("¿Deseas salir de la aplicación?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text(
+              "No",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text(
+              "Si",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+    if (result ?? true) {
+      if (Platform.isAndroid) {
+        SystemNavigator.pop();
+      } else if (Platform.isIOS) {
+        exit(0);
+      }
+    }
   }
 }
 
@@ -128,7 +226,7 @@ class TextFieldUserPass extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const BarNavegationHome()),
+                          builder: (context) => const BarNavegation()),
                     );
                   },
                   child: Container(

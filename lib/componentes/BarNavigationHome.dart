@@ -3,24 +3,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_banca_movil/componentes/inicio.dart';
 import 'package:flutter_banca_movil/componentes/perfil.dart';
 
-class BarNavegationHome extends StatefulWidget {
-  const BarNavegationHome({Key? key}) : super(key: key);
+class BarNavegation extends StatefulWidget {
+  const BarNavegation({Key? key}) : super(key: key);
 
   @override
-  State<BarNavegationHome> createState() => _BarNavegationHomeState();
+  State<BarNavegation> createState() => _BarNavegationState();
 }
 
-class _BarNavegationHomeState extends State<BarNavegationHome> {
+class _BarNavegationState extends State<BarNavegation> {
   int _selectedIndex = 0;
   static const TextStyle optionStyle =
       TextStyle(fontSize: 30, fontWeight: FontWeight.bold);
   static const List<Widget> _widgetOptions = <Widget>[
     Home(),
-    PagePerfil(),
-    Text(
+    //PagePerfil(),
+    /*Text(
       'Index 3: Example',
       style: optionStyle,
-    ),
+    ),*/
   ];
 
   void _onItemTapped(int index) {
@@ -32,19 +32,17 @@ class _BarNavegationHomeState extends State<BarNavegationHome> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: _widgetOptions.elementAt(_selectedIndex),
-      ),
+      body: _widgetOptions.elementAt(_selectedIndex),
       bottomNavigationBar: BottomNavigationBar(
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              size: 35,
+              size: 25,
             ),
             label: 'Inicio',
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
             icon: Icon(
               Icons.account_circle,
               size: 35,
@@ -57,12 +55,12 @@ class _BarNavegationHomeState extends State<BarNavegationHome> {
               size: 35,
             ),
             label: 'Salir',
-          ),
+          ),*/
         ],
         currentIndex: _selectedIndex,
-        selectedItemColor: Colors.black,
-        unselectedItemColor: Colors.grey[800]!,
-        backgroundColor: const Color.fromRGBO(196, 196, 196, 1),
+        selectedItemColor: Colors.white,
+        //unselectedItemColor: Colors.grey[800]!,
+        backgroundColor: Colors.black,
         onTap: _onItemTapped,
       ),
     );

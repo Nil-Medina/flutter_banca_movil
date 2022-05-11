@@ -1,16 +1,98 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_banca_movil/componentes/TransferPage.dart';
+import 'package:flutter_banca_movil/componentes/perfil.dart';
+//import 'package:flutter_banca_movil/main.dart';
 
 class Home extends StatelessWidget {
   const Home({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      //backgroundColor: Colors.grey[800]!,
-      backgroundColor: Colors.white,
-      body: BodyHome(),
+    return WillPopScope(
+      onWillPop: () {
+        _validationback(context);
+        return Future.value(false);
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: Colors.black,
+          leading: TextButton(
+            onPressed: () {
+              _validationback(context);
+            },
+            child: Container(
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(100),
+              ),
+              child: Image.asset(
+                "assets/icons/turnoff.png",
+                scale: 1.0,
+              ),
+            ),
+          ),
+          actions: [
+            IconButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PagePerfil(),
+                    ),
+                  );
+                },
+                icon: const Icon(
+                  Icons.account_circle_outlined,
+                  size: 40,
+                ))
+          ],
+        ),
+        //backgroundColor: Colors.grey[800]!,
+        backgroundColor: Colors.white,
+        body: const BodyHome(),
+      ),
     );
+  }
+
+  void _validationback(BuildContext context) async {
+    final result = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text(
+          "ALERTA!",
+          style: TextStyle(
+            fontSize: 20,
+          ),
+        ),
+        content: const Text("¿Seguro que deseas salir?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text(
+              "No",
+              style: TextStyle(
+                //fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text(
+              "Si",
+              style: TextStyle(
+                //fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+    if (result ?? true) {
+      Navigator.of(context).pop();
+    }
   }
 }
 
@@ -47,9 +129,9 @@ class TitleBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 360,
+      height: 320,
       width: 300,
-      alignment: Alignment.centerLeft,
+      //alignment: Alignment.centerLeft,
       decoration: const BoxDecoration(
         //color: Color.fromRGBO(196, 196, 196, 1),
         color: Colors.black,
@@ -58,12 +140,37 @@ class TitleBody extends StatelessWidget {
           bottomRight: Radius.circular(50),
         ),
       ),
-      padding: const EdgeInsets.all(10),
+      //padding: const EdgeInsets.all(5),
       child: Column(
         children: <Widget>[
-          const SizedBox(
-            height: 30,
-          ),
+          /*Container(
+            height: 50,
+            width: 450,
+            alignment: Alignment.centerRight,
+            decoration: const BoxDecoration(color: Colors.black),
+            child: TextButton(
+              onPressed: () {
+                _validationback(context);
+              },
+              child: Container(
+                //height: 50,
+                //width: 34,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Image.asset(
+                  "assets/icons/turnoff.png",
+                  //width: 5,
+                  //height: 5,
+                  scale: 1.0,
+                ),
+              ),
+            ),
+          ),*/
+          /*const SizedBox(
+            height: 5,
+          ),*/
           Container(
             width: 400,
             /*decoration: const BoxDecoration(
@@ -159,7 +266,7 @@ class BodyButtoms extends StatelessWidget {
           onPressed: () {
             Navigator.push(
               context,
-              MaterialPageRoute(builder: (context) => const PageTransfer()),
+              MaterialPageRoute(builder: (context) => PageTransfer()),
             );
           },
           child: Container(
