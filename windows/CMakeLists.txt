@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.14)
-project(flutter_banca_movil LANGUAGES CXX)
+project(flutter_application_banca LANGUAGES CXX)
 
-set(BINARY_NAME "flutter_banca_movil")
+set(BINARY_NAME "flutter_application_banca")
 
 cmake_policy(SET CMP0063 NEW)
 

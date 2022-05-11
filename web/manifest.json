@@ -1,6 +1,6 @@
 {
-    "name": "flutter_banca_movil",
-    "short_name": "flutter_banca_movil",
+    "name": "flutter_application_banca",
+    "short_name": "flutter_application_banca",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

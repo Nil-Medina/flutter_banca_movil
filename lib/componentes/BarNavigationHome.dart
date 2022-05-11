@@ -1,7 +1,7 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_banca_movil/componentes/inicio.dart';
+import 'package:flutter_application_banca/componentes/inicio.dart';
 
 class BarNavegation extends StatefulWidget {
   const BarNavegation({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_banca_movil/componentes/TransferPage.dart';
-import 'package:flutter_banca_movil/componentes/perfil.dart';
+import 'package:flutter_application_banca/componentes/TransferPage.dart';
+import 'package:flutter_application_banca/componentes/perfil.dart';
 //import 'package:flutter_banca_movil/main.dart';
 
 class Home extends StatelessWidget {

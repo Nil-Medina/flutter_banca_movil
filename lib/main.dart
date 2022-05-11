@@ -1,11 +1,11 @@
-import 'dart:async';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
-import 'package:flutter_banca_movil/componentes/registro.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import 'componentes/BarNavigationHome.dart';
+import 'componentes/registro.dart';
 
 void main() {
   runApp(const MyApp());
