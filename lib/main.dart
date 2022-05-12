@@ -2,9 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_banca/componentes/inicio.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import 'componentes/BarNavigationHome.dart';
+//import 'componentes/BarNavigationHome.dart';
 import 'componentes/registro.dart';
 
 void main() {
@@ -221,8 +222,7 @@ class TextFieldUserPass extends StatelessWidget {
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(
-                          builder: (context) => const BarNavegation()),
+                      MaterialPageRoute(builder: (context) => const Home()),
                     );
                   },
                   child: Container(
