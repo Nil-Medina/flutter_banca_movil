@@ -60,17 +60,17 @@ class Home extends StatelessWidget {
       barrierDismissible: false,
       builder: (BuildContext context) => AlertDialog(
         title: const Text(
-          "ALERTA!",
+          "ESPERA!",
           style: TextStyle(
             fontSize: 20,
           ),
         ),
-        content: const Text("¿Seguro que deseas salir?"),
+        content: const Text("¿Seguro que deseas salir en este momento?"),
         actions: [
           TextButton(
             onPressed: () => Navigator.of(context).pop(false),
             child: const Text(
-              "No",
+              "No, Seguir.",
               style: TextStyle(
                 //fontSize: 20,
                 color: Colors.black,
@@ -80,7 +80,7 @@ class Home extends StatelessWidget {
           TextButton(
             onPressed: () => Navigator.of(context).pop(true),
             child: const Text(
-              "Si",
+              "Si, Cerrar Sesión.",
               style: TextStyle(
                 //fontSize: 20,
                 color: Colors.black,
