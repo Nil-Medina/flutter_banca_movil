@@ -72,7 +72,7 @@ class _MyHomePageState extends State<MyHomePage> {
       barrierDismissible: false,
       builder: (BuildContext context) => AlertDialog(
         title: const Text(
-          "AVISO",
+          "INFORMACION",
           style: TextStyle(
             fontSize: 20,
           ),
