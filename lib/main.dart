@@ -1,7 +1,14 @@
+import 'dart:async';
 import 'dart:io';
+//import 'package:flutter_application_banca/entities/auth.dart';
+//import 'package:http/http.dart' as http;
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
+//import 'firebase_options.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_application_banca/componentes/inicio.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -10,15 +17,35 @@ import 'componentes/registro.dart';
 
 void main() {
   runApp(const MyApp());
+  configLoading();
+  Firebase.initializeApp();
+}
+
+void configLoading() {
+  EasyLoading.instance
+    ..displayDuration = const Duration(milliseconds: 2000)
+    ..indicatorType = EasyLoadingIndicatorType.fadingCircle
+    ..loadingStyle = EasyLoadingStyle.dark
+    ..indicatorSize = 45.0
+    ..radius = 10.0
+    ..progressColor = Colors.yellow
+    ..backgroundColor = Colors.green
+    ..indicatorColor = Colors.yellow
+    ..textColor = Colors.yellow
+    ..maskColor = Colors.blue.withOpacity(0.5)
+    ..userInteractions = true
+    ..dismissOnTap = false;
+  //..customAnimation = CustomAnimation();
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       title: 'Flutter Demo Banca Movil',
-      home: MyHomePage(),
+      home: const MyHomePage(),
+      builder: EasyLoading.init(),
     );
   }
 }
@@ -47,12 +74,12 @@ class _MyHomePageState extends State<MyHomePage> {
           children: const <Widget>[
             TitleLogin(),
             SizedBox(
-              height: 5,
+              height: 0,
             ),
             TextFieldUserPass(),
           ],
         ),
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.blueAccent,
         floatingActionButton: FloatingActionButton(
           onPressed: () async {
             _backCall(context);
@@ -159,12 +186,13 @@ class TitleLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150,
+      height: 300,
       width: 400,
       decoration: const BoxDecoration(
-        color: Colors.white,
+        gradient: LinearGradient(
+            colors: [Colors.blueAccent, Colors.white, Colors.blueAccent]),
       ),
-      alignment: Alignment.bottomCenter,
+      alignment: Alignment.center,
       child: const Text(
         "BANCA MOVIL",
         textAlign: TextAlign.center,
@@ -175,116 +203,230 @@ class TitleLogin extends StatelessWidget {
   }
 }
 
-class TextFieldUserPass extends StatelessWidget {
-  const TextFieldUserPass({
-    Key? key,
-  }) : super(key: key);
+class TextFieldUserPass extends StatefulWidget {
+  const TextFieldUserPass({Key? key}) : super(key: key);
+
+  @override
+  State<TextFieldUserPass> createState() => _TextFieldUserPassState();
+}
+
+class _TextFieldUserPassState extends State<TextFieldUserPass> {
+  final TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _passwordcontroller = TextEditingController();
+
+  //late TextEditingController _emailcontroller;
+  //late TextEditingController _passwordcontroller;
+
+  Timer? _timer;
+
+  //final AuthServer _auth = AuthServer();
+
+  /*void _login(BuildContext context) async {
+    print("""__emailcontroller ${_emailcontroller.text}
+__passwordcontroller ${_passwordcontroller.text}
+                """);
+    //EasyLoading.show(status: "Loading....");
+    /*Navigator.push(
+        context, MaterialPageRoute(builder: (context) => const Home()));*/
+  }*/
+
+  _iniciarsesion(String emailInput, String passInput) async {
+    try {
+      //metodo ingreso de usuario
+      EasyLoading.show(status: "Loading....");
+      UserCredential userCredential =
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailInput,
+        password: passInput,
+      );
+      EasyLoading.showSuccess('Bienvenido!');
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => const Home()));
+      //EasyLoading.dismiss();
+      _emailcontroller.clear();
+      _passwordcontroller.clear();
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'user-not-found') {
+        EasyLoading.showInfo("El correo electronico no esta registrado"
+            "\n"
+            "Registrate!");
+        //print("Usuario no registrado con ese correo electronico");
+      } else if (e.code == 'wrong-password') {
+        EasyLoading.showError('Contraseña Incorrecta');
+        //print("Contraseña Incorrecta");
+        //EasyLoading.dismiss();
+      }
+    }
+  }
+
+  @override
+  void dispose() {
+    _emailcontroller.dispose();
+    _passwordcontroller.dispose();
+    super.dispose();
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    EasyLoading.addStatusCallback((status) {
+      print('EasyLoading Status $status');
+      if (status == EasyLoadingStatus.dismiss) {
+        _timer?.cancel();
+      }
+    });
+    //EasyLoading.showSuccess('');
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: <Widget>[
-        Container(
-          height: 520,
-          decoration: const BoxDecoration(
-            color: Colors.white,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(40),
-            child: Column(
-              children: <Widget>[
-                const TextField(
-                  keyboardType: TextInputType.emailAddress,
-                  autocorrect: true,
-                  decoration: InputDecoration(
-                    fillColor: Colors.black,
-                    labelText: "Correo Electronico",
-                    labelStyle: TextStyle(color: Colors.black, fontSize: 18),
-                  ),
-                  //textInputAction: TextInputAction.continueAction,
-                ),
-                const SizedBox(
-                  height: 15,
-                ),
-                const TextField(
-                  autocorrect: true,
-                  obscureText: true,
-                  decoration: InputDecoration(
-                    fillColor: Colors.black,
-                    labelText: "Contraseña",
-                    labelStyle: TextStyle(color: Colors.black, fontSize: 18),
-                  ),
-                ),
-                const SizedBox(
-                  height: 20,
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => const Home()),
-                    );
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(10),
-                      color: Colors.black,
-                    ),
-                    padding: const EdgeInsets.all(15),
-                    child: const Text(
-                      "INICIAR SESION",
-                      style: TextStyle(fontSize: 18, color: Colors.white),
-                    ),
-                  ),
-                ),
-                const SizedBox(
-                  height: 5,
-                ),
-                Center(
-                  child: TextButton(
-                    onPressed: () {},
-                    child: const Text(
-                      "¿Olvidaste tu Correo o Clave?",
-                      style: TextStyle(color: Colors.black, fontSize: 17),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 5),
-                Center(
-                  child: TextButton(
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => const PagRegistro(),
+    return Transform.translate(
+      offset: const Offset(0, -60),
+      child: Column(
+        children: <Widget>[
+          Container(
+            height: 380,
+            width: 380,
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(30),
+                bottomRight: Radius.circular(30),
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
+              ),
+            ),
+            child: Padding(
+              padding: const EdgeInsets.all(5),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: TextField(
+                      controller: _emailcontroller,
+                      keyboardType: TextInputType.emailAddress,
+                      autocorrect: true,
+                      decoration: const InputDecoration(
+                        icon: Icon(
+                          Icons.email,
+                          color: Colors.black,
+                          size: 28,
                         ),
-                      );
-                    },
-                    child: const Text(
-                      "Registrate",
-                      style: TextStyle(color: Colors.black, fontSize: 18),
+                        fillColor: Colors.black,
+                        labelText: "Correo Electronico",
+                        hintText: "ejemplo@correo.com",
+                        labelStyle:
+                            TextStyle(color: Colors.black, fontSize: 18),
+                      ),
+                      //textInputAction: TextInputAction.continueAction,
                     ),
                   ),
-                ),
-              ],
+                  const SizedBox(
+                    height: 15,
+                  ),
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 40),
+                    child: TextField(
+                      controller: _passwordcontroller,
+                      autocorrect: true,
+                      obscureText: true,
+                      decoration: const InputDecoration(
+                        icon: Icon(
+                          Icons.lock,
+                          color: Colors.black,
+                          size: 28,
+                        ),
+                        fillColor: Colors.black,
+                        labelText: "Contraseña",
+                        hintText: "Contraseña",
+                        labelStyle:
+                            TextStyle(color: Colors.black, fontSize: 18),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 20,
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      /*login(_emailcontroller.text.toString(),
+                          _passwordcontroller.text.toString());*/
+                      _iniciarsesion(_emailcontroller.text.toString(),
+                          _passwordcontroller.text.toString());
+                    },
+                    child: Container(
+                      height: 60,
+                      width: 240,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                        color: Colors.black,
+                      ),
+                      //padding: const EdgeInsets.all(0),
+                      child: const Center(
+                        child: Text(
+                          "INICIAR SESION",
+                          style: TextStyle(fontSize: 18, color: Colors.white),
+                        ),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 5,
+                  ),
+                  Center(
+                    child: TextButton(
+                      onPressed: () {},
+                      child: const Text(
+                        "¿Olvidaste tu Correo o Contraseña?",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "¿No tienes cuenta?",
+                        style: TextStyle(color: Colors.black, fontSize: 17),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const PagRegistro(),
+                            ),
+                          );
+                        },
+                        child: const Text(
+                          "Registrate",
+                          style: TextStyle(color: Colors.black, fontSize: 17),
+                        ),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
-        ),
-        //const SizedBox(height: 0),
-        /*Container(
-          height: 100,
-          width: 450,
-          decoration: const BoxDecoration(
-            color: Colors.black,
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(0),
-            child: Column(
-              children: <Widget>[],
+          //const SizedBox(height: 0),
+          /*Container(
+            height: 100,
+            width: 450,
+            decoration: const BoxDecoration(
+              color: Colors.black,
             ),
-          ),
-        ),*/
-      ],
+            child: Padding(
+              padding: const EdgeInsets.all(0),
+              child: Column(
+                children: <Widget>[],
+              ),
+            ),
+          ),*/
+        ],
+      ),
     );
   }
 }

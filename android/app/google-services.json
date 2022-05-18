@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1039013092020",
+    "project_id": "mibancamovil-350600",
+    "storage_bucket": "mibancamovil-350600.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1039013092020:android:17e4d22a596577f86a15e1",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_banca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1039013092020-q8sj9lstc0geotk2gnev88ciu4r61h88.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA_kxdLSOW3RYdZpMgb9lJy8TjUqFraxAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1039013092020-q8sj9lstc0geotk2gnev88ciu4r61h88.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

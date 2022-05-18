@@ -3,11 +3,30 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
-class PageTransfer extends StatelessWidget {
-  PageTransfer({Key? key}) : super(key: key);
+class PageTransfer extends StatefulWidget {
+  const PageTransfer({Key? key}) : super(key: key);
 
+  @override
+  State<PageTransfer> createState() => _PageTransferState();
+}
+
+class _PageTransferState extends State<PageTransfer> {
   final _controller = TextEditingController();
+  Timer? _timer;
+
+  @override
+  void initState() {
+    super.initState();
+    EasyLoading.addStatusCallback((status) {
+      print('EasyLoading Status $status');
+      if (status == EasyLoadingStatus.dismiss) {
+        _timer?.cancel();
+      }
+    });
+    //EasyLoading.showSuccess('');
+  }
 
   void _validationPage(BuildContext context) async {
     // ignore: prefer_is_empty
@@ -112,11 +131,7 @@ class PageTransfer extends StatelessWidget {
                     ),
                     TextButton(
                       onPressed: () {
-                        /*Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => const BarNavegationHome()),
-                      );*/
+                        EasyLoading.show(status: 'loading...');
                       },
                       child: Container(
                         decoration: BoxDecoration(

@@ -1,6 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/componentes/TransferPage.dart';
 import 'package:flutter_application_banca/componentes/perfil.dart';
+
 //import 'package:flutter_banca_movil/main.dart';
 
 class Home extends StatelessWidget {
@@ -28,18 +30,22 @@ class Home extends StatelessWidget {
               child: Image.asset(
                 "assets/icons/turnoff.png",
                 scale: 1.0,
+                height: 40,
+                width: 40,
               ),
             ),
           ),
           actions: [
             IconButton(
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => const PagePerfil(),
-                    ),
-                  );
+                onPressed: () async {
+                  await FirebaseAuth.instance.signOut().then((value) {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const PagePerfil(),
+                      ),
+                    );
+                  });
                 },
                 icon: const Icon(
                   Icons.account_circle_outlined,
@@ -109,11 +115,11 @@ class BodyHome extends StatelessWidget {
       children: const <Widget>[
         TitleBody(),
         SizedBox(
-          height: 40,
+          height: 0,
         ),
         BodyButtoms(),
         SizedBox(
-          height: 20,
+          height: 0,
         ),
         BodyCards(),
       ],
@@ -129,12 +135,12 @@ class TitleBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 320,
+      height: 350,
       width: 300,
       //alignment: Alignment.centerLeft,
       decoration: const BoxDecoration(
         //color: Color.fromRGBO(196, 196, 196, 1),
-        color: Colors.black,
+        color: Colors.grey,
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(50),
           bottomRight: Radius.circular(50),
@@ -221,7 +227,7 @@ class TitleBody extends StatelessWidget {
             height: 0,
           ),
           Container(
-            height: 110,
+            height: 100,
             alignment: Alignment.center,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -229,7 +235,7 @@ class TitleBody extends StatelessWidget {
                 Text(
                   "Mi Saldo",
                   style: TextStyle(
-                    fontSize: 25,
+                    fontSize: 27.5,
                     color: Colors.white,
                   ),
                 ),
@@ -259,87 +265,90 @@ class BodyButtoms extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-      children: [
-        TextButton(
-          onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => PageTransfer()),
-            );
-          },
-          child: Container(
-            height: 100,
-            width: 140,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  height: 70,
-                  width: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(100),
+    return Transform.translate(
+      offset: const Offset(0, -60),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          TextButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => PageTransfer()),
+              );
+            },
+            child: Container(
+              height: 100,
+              width: 140,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    height: 70,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: const Icon(
+                      Icons.repeat,
+                      color: Colors.black,
+                      size: 40,
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.repeat,
-                    color: Colors.black,
-                    size: 40,
+                  const SizedBox(
+                    height: 3,
                   ),
-                ),
-                const SizedBox(
-                  height: 3,
-                ),
-                const Text(
-                  "TRANSFERIR",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
-            ),
-          ),
-        ),
-        TextButton(
-          onPressed: () {},
-          child: Container(
-            height: 100,
-            width: 140,
-            decoration: BoxDecoration(
-              color: Colors.black,
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                Container(
-                  height: 70,
-                  width: 70,
-                  decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(100),
+                  const Text(
+                    "TRANSFERIR",
+                    style: TextStyle(color: Colors.white),
                   ),
-                  child: const Icon(
-                    Icons.supervisor_account_rounded,
-                    color: Colors.black,
-                    size: 55,
-                  ),
-                ),
-                const SizedBox(
-                  height: 3,
-                ),
-                const Text(
-                  "CONTACTOS",
-                  style: TextStyle(color: Colors.white),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
-        ),
-      ],
+          TextButton(
+            onPressed: () {},
+            child: Container(
+              height: 100,
+              width: 140,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                    height: 70,
+                    width: 70,
+                    decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: const Icon(
+                      Icons.supervisor_account_rounded,
+                      color: Colors.black,
+                      size: 55,
+                    ),
+                  ),
+                  const SizedBox(
+                    height: 3,
+                  ),
+                  const Text(
+                    "CONTACTOS",
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
@@ -351,78 +360,82 @@ class BodyCards extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      height: 300,
-      width: 300,
-      /*decoration: const BoxDecoration(
-        color: Colors.grey,
-      ),*/
-      padding: const EdgeInsets.all(10),
-      child: Column(
-        children: <Widget>[
-          Card(
-            color: Colors.black,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(3),
-              child: ListTile(
-                tileColor: Colors.blue[300]!,
-                contentPadding: const EdgeInsets.all(12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                leading: const Icon(
-                  Icons.credit_card,
-                  size: 40,
-                  color: Colors.black,
-                ),
-                title: const Text(
-                  "CUENTA FREE",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20.5),
-                ),
-                subtitle: const Text(
-                  'Saldo Disponible: S/.0.00',
-                  style: TextStyle(fontSize: 17),
+    return Transform.translate(
+      offset: const Offset(0, -50),
+      child: Container(
+        height: 270,
+        width: 300,
+        /*decoration: const BoxDecoration(
+          color: Colors.grey,
+        ),*/
+        padding: const EdgeInsets.all(10),
+        child: Column(
+          children: <Widget>[
+            Card(
+              color: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(3),
+                child: ListTile(
+                  tileColor: Colors.blue[300]!,
+                  contentPadding: const EdgeInsets.all(12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  leading: const Icon(
+                    Icons.credit_card,
+                    size: 40,
+                    color: Colors.black,
+                  ),
+                  title: const Text(
+                    "CUENTA FREE",
+                    style:
+                        TextStyle(fontWeight: FontWeight.bold, fontSize: 20.5),
+                  ),
+                  subtitle: const Text(
+                    'Saldo Disponible: S/.0.00',
+                    style: TextStyle(fontSize: 17),
+                  ),
                 ),
               ),
             ),
-          ),
-          const SizedBox(
-            height: 25,
-          ),
-          Card(
-            color: Colors.black,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(10),
+            const SizedBox(
+              height: 25,
             ),
-            child: Padding(
-              padding: const EdgeInsets.all(3),
-              child: ListTile(
-                tileColor: Colors.tealAccent[400]!,
-                contentPadding: const EdgeInsets.all(12),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                //shape: Border.all(color: Colors.grey, width: 5),
-                leading: const Icon(
-                  Icons.add_card,
-                  size: 40,
-                  color: Colors.black,
-                ),
-                title: const Text(
-                  "CUENTA PREMIUM",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-                ),
-                subtitle: const Text(
-                  'Apertura tu Cuenta Aqui',
-                  style: TextStyle(fontSize: 17),
+            Card(
+              color: Colors.black,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(3),
+                child: ListTile(
+                  tileColor: Colors.tealAccent[400]!,
+                  contentPadding: const EdgeInsets.all(12),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                  //shape: Border.all(color: Colors.grey, width: 5),
+                  leading: const Icon(
+                    Icons.add_card,
+                    size: 40,
+                    color: Colors.black,
+                  ),
+                  title: const Text(
+                    "CUENTA PREMIUM",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                  ),
+                  subtitle: const Text(
+                    'Apertura tu Cuenta Aqui',
+                    style: TextStyle(fontSize: 17),
+                  ),
                 ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
