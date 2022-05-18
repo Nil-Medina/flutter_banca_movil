@@ -232,19 +232,28 @@ __passwordcontroller ${_passwordcontroller.text}
 
   _iniciarsesion(String emailInput, String passInput) async {
     try {
-      //metodo ingreso de usuario
-      EasyLoading.show(status: "Loading....");
-      UserCredential userCredential =
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailInput,
-        password: passInput,
-      );
-      EasyLoading.showSuccess('Bienvenido!');
-      Navigator.push(
-          context, MaterialPageRoute(builder: (context) => const Home()));
-      //EasyLoading.dismiss();
-      _emailcontroller.clear();
-      _passwordcontroller.clear();
+      if (emailInput.isEmpty) {
+        EasyLoading.showInfo('Ingrese el correo y la contraseña');
+      } else if (passInput.isEmpty) {
+        EasyLoading.showInfo('Ingrese la contraseña');
+      } else {
+        if (emailInput.contains("@")) {
+          EasyLoading.show(status: "Loading....");
+          UserCredential userCredential =
+              await FirebaseAuth.instance.signInWithEmailAndPassword(
+            email: emailInput,
+            password: passInput,
+          );
+          EasyLoading.showSuccess('Bienvenido!');
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Home()));
+          //EasyLoading.dismiss();
+          _emailcontroller.clear();
+          _passwordcontroller.clear();
+        } else {
+          EasyLoading.showError('Correo Electronico no valido');
+        }
+      }
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
         EasyLoading.showInfo("El correo electronico no esta registrado"

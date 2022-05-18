@@ -140,7 +140,9 @@ class TitleBody extends StatelessWidget {
       //alignment: Alignment.centerLeft,
       decoration: const BoxDecoration(
         //color: Color.fromRGBO(196, 196, 196, 1),
-        color: Colors.grey,
+        gradient: LinearGradient(
+          colors: [Colors.blueAccent, Colors.white, Colors.blueAccent],
+        ),
         borderRadius: BorderRadius.only(
           bottomLeft: Radius.circular(50),
           bottomRight: Radius.circular(50),
@@ -187,7 +189,7 @@ class TitleBody extends StatelessWidget {
               "BIENVENIDO A TU BANCA MOVIL",
               style: TextStyle(
                 fontSize: 24,
-                color: Colors.white,
+                color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),
             ),
@@ -219,7 +221,7 @@ class TitleBody extends StatelessWidget {
           const Text(
             "Jean Pierre Vasquez",
             style: TextStyle(
-              color: Colors.white,
+              color: Colors.black,
               fontSize: 25,
             ),
           ),
@@ -236,7 +238,7 @@ class TitleBody extends StatelessWidget {
                   "Mi Saldo",
                   style: TextStyle(
                     fontSize: 27.5,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
                 SizedBox(
@@ -246,7 +248,7 @@ class TitleBody extends StatelessWidget {
                   "S/200.00",
                   style: TextStyle(
                       fontSize: 35,
-                      color: Colors.white,
+                      color: Colors.black,
                       fontWeight: FontWeight.bold),
                 ),
               ],
