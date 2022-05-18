@@ -20,7 +20,7 @@ class _PageTransferState extends State<PageTransfer> {
   void initState() {
     super.initState();
     EasyLoading.addStatusCallback((status) {
-      print('EasyLoading Status $status');
+      //print('EasyLoading Status $status');
       if (status == EasyLoadingStatus.dismiss) {
         _timer?.cancel();
       }

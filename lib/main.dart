@@ -45,6 +45,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo Banca Movil',
       home: const MyHomePage(),
+      debugShowCheckedModeBanner: false,
       builder: EasyLoading.init(),
     );
   }
@@ -70,7 +71,7 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         body: ListView(
           scrollDirection: Axis.vertical,
-          physics: const NeverScrollableScrollPhysics(),
+          //physics: const NeverScrollableScrollPhysics(),
           children: const <Widget>[
             TitleLogin(),
             SizedBox(
@@ -186,7 +187,7 @@ class TitleLogin extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 290,
       width: 400,
       decoration: const BoxDecoration(
         gradient: LinearGradient(
@@ -217,6 +218,8 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
   //late TextEditingController _emailcontroller;
   //late TextEditingController _passwordcontroller;
 
+  bool _isObscure = true;
+
   Timer? _timer;
 
   //final AuthServer _auth = AuthServer();
@@ -239,8 +242,7 @@ __passwordcontroller ${_passwordcontroller.text}
       } else {
         if (emailInput.contains("@")) {
           EasyLoading.show(status: "Loading....");
-          UserCredential userCredential =
-              await FirebaseAuth.instance.signInWithEmailAndPassword(
+          await FirebaseAuth.instance.signInWithEmailAndPassword(
             email: emailInput,
             password: passInput,
           );
@@ -263,7 +265,6 @@ __passwordcontroller ${_passwordcontroller.text}
       } else if (e.code == 'wrong-password') {
         EasyLoading.showError('Contraseña Incorrecta');
         //print("Contraseña Incorrecta");
-        //EasyLoading.dismiss();
       }
     }
   }
@@ -279,7 +280,7 @@ __passwordcontroller ${_passwordcontroller.text}
   void initState() {
     super.initState();
     EasyLoading.addStatusCallback((status) {
-      print('EasyLoading Status $status');
+      //print('EasyLoading Status $status');
       if (status == EasyLoadingStatus.dismiss) {
         _timer?.cancel();
       }
@@ -289,152 +290,166 @@ __passwordcontroller ${_passwordcontroller.text}
 
   @override
   Widget build(BuildContext context) {
-    return Transform.translate(
-      offset: const Offset(0, -60),
-      child: Column(
-        children: <Widget>[
-          Container(
-            height: 380,
-            width: 380,
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(30),
-                bottomRight: Radius.circular(30),
-                topLeft: Radius.circular(30),
-                topRight: Radius.circular(30),
+    return SingleChildScrollView(
+      child: Transform.translate(
+        offset: const Offset(0, -50),
+        child: Column(
+          children: <Widget>[
+            Container(
+              height: 368,
+              width: 380,
+              decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(30),
+                  bottomRight: Radius.circular(30),
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
               ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(5),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: TextField(
-                      controller: _emailcontroller,
-                      keyboardType: TextInputType.emailAddress,
-                      autocorrect: true,
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.email,
-                          color: Colors.black,
-                          size: 28,
+              child: Padding(
+                padding: const EdgeInsets.all(8),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: TextField(
+                        controller: _emailcontroller,
+                        keyboardType: TextInputType.emailAddress,
+                        autocorrect: true,
+                        decoration: const InputDecoration(
+                          icon: Icon(
+                            Icons.email,
+                            color: Colors.black,
+                            size: 28,
+                          ),
+                          fillColor: Colors.black,
+                          labelText: "Correo Electronico",
+                          hintText: "ejemplo@correo.com",
+                          labelStyle:
+                              TextStyle(color: Colors.black, fontSize: 18),
                         ),
-                        fillColor: Colors.black,
-                        labelText: "Correo Electronico",
-                        hintText: "ejemplo@correo.com",
-                        labelStyle:
-                            TextStyle(color: Colors.black, fontSize: 18),
-                      ),
-                      //textInputAction: TextInputAction.continueAction,
-                    ),
-                  ),
-                  const SizedBox(
-                    height: 15,
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 40),
-                    child: TextField(
-                      controller: _passwordcontroller,
-                      autocorrect: true,
-                      obscureText: true,
-                      decoration: const InputDecoration(
-                        icon: Icon(
-                          Icons.lock,
-                          color: Colors.black,
-                          size: 28,
-                        ),
-                        fillColor: Colors.black,
-                        labelText: "Contraseña",
-                        hintText: "Contraseña",
-                        labelStyle:
-                            TextStyle(color: Colors.black, fontSize: 18),
+                        //textInputAction: TextInputAction.continueAction,
                       ),
                     ),
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  TextButton(
-                    onPressed: () {
-                      /*login(_emailcontroller.text.toString(),
-                          _passwordcontroller.text.toString());*/
-                      _iniciarsesion(_emailcontroller.text.toString(),
-                          _passwordcontroller.text.toString());
-                    },
-                    child: Container(
-                      height: 60,
-                      width: 240,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
-                        color: Colors.black,
-                      ),
-                      //padding: const EdgeInsets.all(0),
-                      child: const Center(
-                        child: Text(
-                          "INICIAR SESION",
-                          style: TextStyle(fontSize: 18, color: Colors.white),
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 15,
                     ),
-                  ),
-                  const SizedBox(
-                    height: 5,
-                  ),
-                  Center(
-                    child: TextButton(
-                      onPressed: () {},
-                      child: const Text(
-                        "¿Olvidaste tu Correo o Contraseña?",
-                        style: TextStyle(color: Colors.black, fontSize: 17),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: 5),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const Text(
-                        "¿No tienes cuenta?",
-                        style: TextStyle(color: Colors.black, fontSize: 17),
-                      ),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => const PagRegistro(),
+                    Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 40),
+                      child: TextField(
+                        controller: _passwordcontroller,
+                        autocorrect: true,
+                        obscureText: _isObscure,
+                        decoration: InputDecoration(
+                          icon: const Icon(
+                            Icons.lock,
+                            color: Colors.black,
+                            size: 28,
+                          ),
+                          fillColor: Colors.black,
+                          labelText: "Contraseña",
+                          hintText: "Contraseña",
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                _isObscure = !_isObscure;
+                              });
+                            },
+                            icon: Icon(
+                              _isObscure
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
                             ),
-                          );
-                        },
+                          ),
+                          labelStyle: const TextStyle(
+                              color: Colors.black, fontSize: 18),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    TextButton(
+                      onPressed: () {
+                        /*login(_emailcontroller.text.toString(),
+                            _passwordcontroller.text.toString());*/
+                        _iniciarsesion(_emailcontroller.text.toString(),
+                            _passwordcontroller.text.toString());
+                      },
+                      child: Container(
+                        height: 60,
+                        width: 240,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.black,
+                        ),
+                        //padding: const EdgeInsets.all(0),
+                        child: const Center(
+                          child: Text(
+                            "INICIAR SESION",
+                            style: TextStyle(fontSize: 18, color: Colors.white),
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 5,
+                    ),
+                    Center(
+                      child: TextButton(
+                        onPressed: () {},
                         child: const Text(
-                          "Registrate",
+                          "¿Olvidaste tu Correo o Contraseña?",
                           style: TextStyle(color: Colors.black, fontSize: 17),
                         ),
                       ),
-                    ],
-                  ),
-                ],
+                    ),
+                    const SizedBox(height: 5),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          "¿No tienes cuenta?",
+                          style: TextStyle(color: Colors.black, fontSize: 17),
+                        ),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => const PagRegistro(),
+                              ),
+                            );
+                          },
+                          child: const Text(
+                            "Registrate",
+                            style: TextStyle(color: Colors.black, fontSize: 17),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          //const SizedBox(height: 0),
-          /*Container(
-            height: 100,
-            width: 450,
-            decoration: const BoxDecoration(
-              color: Colors.black,
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(0),
-              child: Column(
-                children: <Widget>[],
+            //const SizedBox(height: 0),
+            /*Container(
+              height: 100,
+              width: 450,
+              decoration: const BoxDecoration(
+                color: Colors.black,
               ),
-            ),
-          ),*/
-        ],
+              child: Padding(
+                padding: const EdgeInsets.all(0),
+                child: Column(
+                  children: <Widget>[],
+                ),
+              ),
+            ),*/
+          ],
+        ),
       ),
     );
   }

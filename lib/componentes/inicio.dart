@@ -276,7 +276,7 @@ class BodyButtoms extends StatelessWidget {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => PageTransfer()),
+                MaterialPageRoute(builder: (context) => const PageTransfer()),
               );
             },
             child: Container(
