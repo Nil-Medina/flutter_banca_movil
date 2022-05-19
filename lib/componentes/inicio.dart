@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/componentes/TransferPage.dart';
 import 'package:flutter_application_banca/componentes/perfil.dart';
+import 'package:flutter_application_banca/main.dart';
 
 //import 'package:flutter_banca_movil/main.dart';
 
@@ -18,6 +19,7 @@ class Home extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.black,
+          title: const Center(child: Text("INICIO")),
           leading: TextButton(
             onPressed: () {
               _validationback(context);
@@ -30,26 +32,24 @@ class Home extends StatelessWidget {
               child: Image.asset(
                 "assets/icons/turnoff.png",
                 scale: 1.0,
-                height: 40,
-                width: 40,
+                height: 30,
+                width: 30,
               ),
             ),
           ),
           actions: [
             IconButton(
-                onPressed: () async {
-                  await FirebaseAuth.instance.signOut().then((value) {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const PagePerfil(),
-                      ),
-                    );
-                  });
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const PagePerfil(),
+                    ),
+                  );
                 },
                 icon: const Icon(
                   Icons.account_circle_outlined,
-                  size: 40,
+                  size: 30,
                 ))
           ],
         ),
@@ -97,7 +97,14 @@ class Home extends StatelessWidget {
       ),
     );
     if (result ?? true) {
-      Navigator.of(context).pop();
+      await FirebaseAuth.instance.signOut().then((value) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => const MyHomePage(),
+          ),
+        );
+      });
     }
   }
 }
@@ -135,7 +142,7 @@ class TitleBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 350,
+      height: 365,
       width: 300,
       //alignment: Alignment.centerLeft,
       decoration: const BoxDecoration(
@@ -181,6 +188,7 @@ class TitleBody extends StatelessWidget {
           ),*/
           Container(
             width: 400,
+            height: 50,
             /*decoration: const BoxDecoration(
               color: Colors.white,
             ),*/
@@ -188,7 +196,7 @@ class TitleBody extends StatelessWidget {
             child: const Text(
               "BIENVENIDO A TU BANCA MOVIL",
               style: TextStyle(
-                fontSize: 24,
+                fontSize: 22,
                 color: Colors.black,
                 fontWeight: FontWeight.bold,
               ),

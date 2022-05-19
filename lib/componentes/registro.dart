@@ -76,7 +76,7 @@ class _PagRegistroState extends State<PagRegistro> {
     return Scaffold(
       appBar: AppBar(
         title: Container(
-          alignment: const Alignment(-0.3, 0),
+          alignment: const Alignment(-0.4, 0),
           child: const Text(
             "CREAR CUENTA",
             style: TextStyle(
@@ -128,10 +128,10 @@ class _PagRegistroState extends State<PagRegistro> {
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      margin: const EdgeInsets.only(left: 20, right: 20),
+                      margin: const EdgeInsets.only(left: 10, right: 10),
                       child: Padding(
                         padding: const EdgeInsets.symmetric(
-                            horizontal: 35, vertical: 20),
+                            horizontal: 20, vertical: 20),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           children: [
