@@ -9,11 +9,11 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_application_banca/componentes/inicio.dart';
+import 'package:flutter_application_banca/screen/inicio.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //import 'componentes/BarNavigationHome.dart';
-import 'componentes/registro.dart';
+import 'screen/registro.dart';
 
 void main() {
   runApp(const MyApp());

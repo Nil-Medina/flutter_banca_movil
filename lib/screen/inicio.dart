@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/componentes/TransferPage.dart';
-import 'package:flutter_application_banca/componentes/perfil.dart';
+import 'package:flutter_application_banca/screen/TransferPage.dart';
+import 'package:flutter_application_banca/screen/perfil.dart';
 import 'package:flutter_application_banca/main.dart';
 
 //import 'package:flutter_banca_movil/main.dart';
