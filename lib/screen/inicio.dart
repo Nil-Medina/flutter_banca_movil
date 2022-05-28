@@ -155,7 +155,6 @@ class TitleBody extends StatelessWidget {
           bottomRight: Radius.circular(50),
         ),
       ),
-      //padding: const EdgeInsets.all(5),
       child: Column(
         children: <Widget>[
           /*Container(
@@ -189,9 +188,6 @@ class TitleBody extends StatelessWidget {
           Container(
             width: 400,
             height: 50,
-            /*decoration: const BoxDecoration(
-              color: Colors.white,
-            ),*/
             alignment: Alignment.center,
             child: const Text(
               "BIENVENIDO A TU BANCA MOVIL",
