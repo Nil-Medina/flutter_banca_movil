@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/view/TransferPage.dart';
+import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_application_banca/view/perfil.dart';
 //import 'package:flutter_application_banca/main.dart';
 
@@ -96,6 +97,12 @@ class Home extends StatelessWidget {
       ),
     );
     if (result ?? true) {
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const MyLoginPage(),
+        ),
+      );
       /*await FirebaseAuth.instance.signOut().then((value) {
         Navigator.push(
           context,
