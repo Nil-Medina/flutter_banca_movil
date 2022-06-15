@@ -2,14 +2,13 @@ import 'dart:async';
 import 'dart:io';
 //import 'package:flutter_application_banca/entities/auth.dart';
 //import 'package:http/http.dart' as http;
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:firebase_core/firebase_core.dart';
 //import 'firebase_options.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_banca/service/http_service.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
-import 'package:flutter_application_banca/screen/inicio.dart';
+//import 'package:flutter_application_banca/screen/inicio.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 //import 'componentes/BarNavigationHome.dart';
@@ -18,7 +17,6 @@ import 'screen/registro.dart';
 void main() {
   runApp(const MyApp());
   configLoading();
-  Firebase.initializeApp();
 }
 
 void configLoading() {
@@ -71,7 +69,6 @@ class _MyHomePageState extends State<MyHomePage> {
       child: Scaffold(
         body: ListView(
           scrollDirection: Axis.vertical,
-          //physics: const NeverScrollableScrollPhysics(),
           children: const <Widget>[
             TitleLogin(),
             SizedBox(
@@ -81,7 +78,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
         ),
         backgroundColor: Colors.blueAccent,
-        //floatingActionButtonLocation: FloatingActionButtonLocation.startFloat,
         floatingActionButton: FloatingActionButton(
           elevation: 12,
           mini: true,
@@ -214,27 +210,14 @@ class TextFieldUserPass extends StatefulWidget {
 }
 
 class _TextFieldUserPassState extends State<TextFieldUserPass> {
-  late TextEditingController _emailcontroller;
-  late TextEditingController _passwordcontroller;
+  final TextEditingController _emailcontroller = TextEditingController();
+  final TextEditingController _passwordcontroller = TextEditingController();
 
   bool _isObscure = true;
 
-  Timer? _timer;
-
   final focus = FocusNode();
 
-  //final AuthServer _auth = AuthServer();
-
-  /*void _login(BuildContext context) async {
-    print("""__emailcontroller ${_emailcontroller.text}
-__passwordcontroller ${_passwordcontroller.text}
-                """);
-    //EasyLoading.show(status: "Loading....");
-    /*Navigator.push(
-        context, MaterialPageRoute(builder: (context) => const Home()));*/
-  }*/
-
-  _iniciarsesion(String emailInput, String passInput) async {
+  /*_iniciarsesion(String emailInput, String passInput) async {
     try {
       if (emailInput.isEmpty) {
         EasyLoading.showInfo('Ingrese el correo y la contraseña');
@@ -266,27 +249,13 @@ __passwordcontroller ${_passwordcontroller.text}
         //print("Contraseña Incorrecta");
       }
     }
-  }
+  }*/
 
   @override
   void dispose() {
     _emailcontroller.dispose();
     _passwordcontroller.dispose();
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    _emailcontroller = TextEditingController();
-    _passwordcontroller = TextEditingController();
-    super.initState();
-    EasyLoading.addStatusCallback((status) {
-      //print('EasyLoading Status $status');
-      if (status == EasyLoadingStatus.dismiss) {
-        _timer?.cancel();
-      }
-    });
-    //EasyLoading.showSuccess('');
   }
 
   @override
@@ -376,10 +345,10 @@ __passwordcontroller ${_passwordcontroller.text}
                       ),
                       TextButton(
                         onPressed: () {
-                          /*login(_emailcontroller.text.toString(),
-                              _passwordcontroller.text.toString());*/
-                          _iniciarsesion(_emailcontroller.text.toString(),
-                              _passwordcontroller.text.toString());
+                          var email = _emailcontroller.text.toString();
+                          var password = _passwordcontroller.text.toString();
+                          EasyLoading.show(status: '...Loading');
+                          HttpService.login(email, password, context);
                         },
                         child: Container(
                           height: 50,

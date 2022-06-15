@@ -1,8 +1,6 @@
-import 'dart:async';
-
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/main.dart';
+import 'package:flutter_application_banca/service/http_service.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PagRegistro extends StatefulWidget {
@@ -15,60 +13,21 @@ class PagRegistro extends StatefulWidget {
 class _PagRegistroState extends State<PagRegistro> {
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
+  final TextEditingController _namecontroller = TextEditingController();
+  final TextEditingController _apecontroller = TextEditingController();
+  final TextEditingController _dnicontroller = TextEditingController();
+  final TextEditingController _numtelefcontroller = TextEditingController();
   bool _isObscure = true;
-  Timer? _timer;
-
-  _registrarUsuario(String emailInput, String passInput) async {
-    try {
-      if (emailInput.isEmpty) {
-        EasyLoading.showInfo('Ingrese un correo y una contraseña');
-      } else if (passInput.isEmpty) {
-        EasyLoading.showInfo('Ingrese la contraseña');
-      } else {
-        if (emailInput.contains("@")) {
-          EasyLoading.show(status: "Loading....");
-          await FirebaseAuth.instance.createUserWithEmailAndPassword(
-              email: emailInput, password: passInput);
-          EasyLoading.showSuccess('Su cuenta se creo con exito!');
-          Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const MyHomePage()));
-          _emailcontroller.clear();
-          _passwordcontroller.clear();
-        } else {
-          EasyLoading.showInfo(
-              'Por favor ingrese un correo electronico valido');
-        }
-      }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'weak-password') {
-        //print('La contraseña proporcionada es demasiado débil.');
-        EasyLoading.showInfo('La contraseña proporcionada es demasiado débil');
-      } else if (e.code == 'email-already-in-use') {
-        //print('La cuenta ya existe para ese correo electrónico.');
-        EasyLoading.showInfo('La cuenta ya existe para ese correo electrónico');
-      }
-    } catch (e) {
-      //print(e);
-    }
-  }
 
   @override
   void dispose() {
     _emailcontroller.dispose();
     _passwordcontroller.dispose();
+    _namecontroller.dispose();
+    _apecontroller.dispose();
+    _numtelefcontroller.dispose();
+    _dnicontroller.dispose();
     super.dispose();
-  }
-
-  @override
-  void initState() {
-    super.initState();
-    EasyLoading.addStatusCallback((status) {
-      //print('EasyLoading Status $status');
-      if (status == EasyLoadingStatus.dismiss) {
-        _timer?.cancel();
-      }
-    });
-    //EasyLoading.showSuccess('');
   }
 
   @override
@@ -142,6 +101,99 @@ class _PagRegistroState extends State<PagRegistro> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 10),
                                   child: TextField(
+                                    controller: _namecontroller,
+                                    keyboardType: TextInputType.name,
+                                    autocorrect: true,
+                                    decoration: const InputDecoration(
+                                      icon: Icon(
+                                        Icons.account_box_rounded,
+                                        color: Colors.black,
+                                        size: 28,
+                                      ),
+                                      fillColor: Colors.black,
+                                      labelText: "Nombre Completo",
+                                      hintText: "",
+                                      labelStyle: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextField(
+                                    controller: _apecontroller,
+                                    keyboardType: TextInputType.name,
+                                    autocorrect: true,
+                                    decoration: const InputDecoration(
+                                      icon: Icon(
+                                        Icons.account_box_rounded,
+                                        color: Colors.black,
+                                        size: 28,
+                                      ),
+                                      fillColor: Colors.black,
+                                      labelText: "Apellido Completo",
+                                      hintText: "",
+                                      labelStyle: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextField(
+                                    controller: _dnicontroller,
+                                    keyboardType: TextInputType.number,
+                                    autocorrect: true,
+                                    decoration: const InputDecoration(
+                                      icon: Icon(
+                                        Icons.chrome_reader_mode_rounded,
+                                        color: Colors.black,
+                                        size: 28,
+                                      ),
+                                      fillColor: Colors.black,
+                                      labelText: "DNI",
+                                      hintText: "",
+                                      labelStyle: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextField(
+                                    controller: _numtelefcontroller,
+                                    keyboardType: TextInputType.number,
+                                    autocorrect: true,
+                                    decoration: const InputDecoration(
+                                      icon: Icon(
+                                        Icons.phone,
+                                        color: Colors.black,
+                                        size: 28,
+                                      ),
+                                      fillColor: Colors.black,
+                                      labelText: "Número Telefonico",
+                                      hintText: "",
+                                      labelStyle: TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextField(
                                     controller: _emailcontroller,
                                     keyboardType: TextInputType.emailAddress,
                                     autocorrect: true,
@@ -200,9 +252,19 @@ class _PagRegistroState extends State<PagRegistro> {
                                 ),
                                 GestureDetector(
                                   onTap: () {
-                                    _registrarUsuario(
-                                        _emailcontroller.text.toString(),
-                                        _passwordcontroller.text.toString());
+                                    var email =
+                                        _emailcontroller.text.toString();
+                                    var password =
+                                        _passwordcontroller.text.toString();
+                                    var name = _namecontroller.text.toString();
+                                    var lastname =
+                                        _apecontroller.text.toString();
+                                    var dni = _dnicontroller.text.toString();
+                                    var number =
+                                        _numtelefcontroller.text.toString();
+                                    EasyLoading.show(status: '...Loading');
+                                    HttpService.register(email, password, name,
+                                        lastname, dni, number, context);
                                   },
                                   child: Container(
                                     width: 140,
