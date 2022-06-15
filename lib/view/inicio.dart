@@ -1,8 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/screen/TransferPage.dart';
-import 'package:flutter_application_banca/screen/perfil.dart';
-import 'package:flutter_application_banca/main.dart';
+import 'package:flutter_application_banca/view/TransferPage.dart';
+import 'package:flutter_application_banca/view/perfil.dart';
+//import 'package:flutter_application_banca/main.dart';
 
 //import 'package:flutter_banca_movil/main.dart';
 
@@ -97,14 +96,14 @@ class Home extends StatelessWidget {
       ),
     );
     if (result ?? true) {
-      await FirebaseAuth.instance.signOut().then((value) {
+      /*await FirebaseAuth.instance.signOut().then((value) {
         Navigator.push(
           context,
           MaterialPageRoute(
             builder: (context) => const MyHomePage(),
           ),
         );
-      });
+      });*/
     }
   }
 }

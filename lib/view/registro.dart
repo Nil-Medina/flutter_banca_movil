@@ -13,6 +13,7 @@ class PagRegistro extends StatefulWidget {
 class _PagRegistroState extends State<PagRegistro> {
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
+  final TextEditingController _password2controller = TextEditingController();
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _apecontroller = TextEditingController();
   final TextEditingController _dnicontroller = TextEditingController();
@@ -23,6 +24,7 @@ class _PagRegistroState extends State<PagRegistro> {
   void dispose() {
     _emailcontroller.dispose();
     _passwordcontroller.dispose();
+    _password2controller.dispose();
     _namecontroller.dispose();
     _apecontroller.dispose();
     _numtelefcontroller.dispose();
@@ -248,6 +250,42 @@ class _PagRegistroState extends State<PagRegistro> {
                                   ),
                                 ),
                                 const SizedBox(
+                                  height: 10,
+                                ),
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 10),
+                                  child: TextField(
+                                    controller: _password2controller,
+                                    obscureText: _isObscure,
+                                    autocorrect: false,
+                                    decoration: InputDecoration(
+                                      icon: const Icon(
+                                        Icons.lock,
+                                        color: Colors.black,
+                                        size: 28,
+                                      ),
+                                      fillColor: Colors.black,
+                                      labelText: "Confirmar Contraseña",
+                                      hintText: "Contraseña",
+                                      suffixIcon: IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            _isObscure = !_isObscure;
+                                          });
+                                        },
+                                        icon: Icon(
+                                          _isObscure
+                                              ? Icons.visibility
+                                              : Icons.visibility_off,
+                                        ),
+                                      ),
+                                      labelStyle: const TextStyle(
+                                          color: Colors.black, fontSize: 18),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
                                   height: 20,
                                 ),
                                 GestureDetector(
@@ -256,6 +294,8 @@ class _PagRegistroState extends State<PagRegistro> {
                                         _emailcontroller.text.toString();
                                     var password =
                                         _passwordcontroller.text.toString();
+                                    var password2 =
+                                        _password2controller.text.toString();
                                     var name = _namecontroller.text.toString();
                                     var lastname =
                                         _apecontroller.text.toString();
@@ -263,8 +303,15 @@ class _PagRegistroState extends State<PagRegistro> {
                                     var number =
                                         _numtelefcontroller.text.toString();
                                     EasyLoading.show(status: '...Loading');
-                                    HttpService.register(email, password, name,
-                                        lastname, dni, number, context);
+                                    HttpService.register(
+                                        email,
+                                        password,
+                                        password2,
+                                        name,
+                                        lastname,
+                                        dni,
+                                        number,
+                                        context);
                                   },
                                   child: Container(
                                     width: 140,

@@ -2,7 +2,8 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/main.dart';
+import 'package:flutter_application_banca/view/inicio.dart';
+import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;
 
@@ -19,7 +20,7 @@ class HttpService {
     if (email == null || email == '') {
       await EasyLoading.showInfo("Ingrese Correo Electronico y Contraseña");
     } else if (password == null || password == '') {
-      EasyLoading.showError("Ingrese Contraseña");
+      EasyLoading.showInfo("Ingrese Contraseña");
     } else {
       http.Response response = await _client.post(
         _loginUrl,
@@ -39,8 +40,8 @@ class HttpService {
           }*/
           //storage.write(key: "jwt", value: json[0]);
           await EasyLoading.showSuccess("Bienvenido");
-          /*await Navigator.push(context,
-              MaterialPageRoute(builder: (context) => const Dashboard()));*/
+          await Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const Home()));
         } else if (json[0] == '\"email\" must be a valid email') {
           EasyLoading.showInfo("Debe ser un correo electrónico válido");
         } else if (json[0] ==
@@ -57,7 +58,8 @@ class HttpService {
     }
   }
 
-  static register(email, password, name, lastname, dni, number, context) async {
+  static register(
+      email, password, password2, name, lastname, dni, number, context) async {
     if (name == null || name == '') {
       await EasyLoading.showError("Los campos estan vacios");
     } else if (lastname == null || lastname == '') {
@@ -76,6 +78,7 @@ class HttpService {
         body: {
           "email": email,
           "password": password,
+          "password2": password2,
           "name": name,
           "lastname": lastname,
           "dni": dni,
@@ -116,10 +119,12 @@ class HttpService {
             '\"password\" length must be at least 6 characters long') {
           EasyLoading.showError(
               "La longitud de la contraseña debe tener al menos 6 caracteres");
+        } else if (json[0] == 'password not match') {
+          EasyLoading.showError("La contraseña no coincide");
         } else {
           await EasyLoading.showSuccess(json[0]);
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const MyHomePage()));
+              MaterialPageRoute(builder: (context) => const MyLoginPage()));
         }
       } else {
         await EasyLoading.showError(

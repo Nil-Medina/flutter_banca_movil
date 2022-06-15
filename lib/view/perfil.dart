@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 
 //import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
 
 class PagePerfil extends StatelessWidget {
   const PagePerfil({Key? key}) : super(key: key);
 
-  void _backpage(BuildContext context) async {
+  /*void _backpage(BuildContext context) async {
     Navigator.pop(context);
-  }
+  }*/
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +23,7 @@ class PagePerfil extends StatelessWidget {
             children: <Widget>[
               Container(
                 height: 220,
-                decoration: BoxDecoration(
+                decoration: const BoxDecoration(
                   image: DecorationImage(
                     image: AssetImage("assets/images/lugar.jpg"),
                     fit: BoxFit.cover,
@@ -37,7 +36,7 @@ class PagePerfil extends StatelessWidget {
                       width: 80,
                       height: 80,
                       decoration: BoxDecoration(
-                        image: DecorationImage(
+                        image: const DecorationImage(
                           image: AssetImage("assets/images/perfilpreview.png"),
                           fit: BoxFit.cover,
                         ),
@@ -47,9 +46,9 @@ class PagePerfil extends StatelessWidget {
                           width: 4,
                         ),
                       ),
-                      margin: EdgeInsets.only(bottom: 10),
+                      margin: const EdgeInsets.only(bottom: 10),
                     ),
-                    Text(
+                    const Text(
                       "Jean Pierre Vasquez",
                       style: TextStyle(
                           color: Colors.white,
@@ -66,14 +65,14 @@ class PagePerfil extends StatelessWidget {
                 height: 25,
               ),
               Container(
-                color: Color.fromARGB(255, 56, 55, 55),
-                padding: EdgeInsets.symmetric(vertical: 25),
+                color: const Color.fromARGB(255, 56, 55, 55),
+                padding: const EdgeInsets.symmetric(vertical: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
                       //mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text("NOTIFICACIONES",
                             style: TextStyle(
                               color: Colors.white,
@@ -89,14 +88,14 @@ class PagePerfil extends StatelessWidget {
                 height: 20,
               ),
               Container(
-                color: Color.fromARGB(255, 56, 55, 55),
-                padding: EdgeInsets.symmetric(vertical: 25),
+                color: const Color.fromARGB(255, 56, 55, 55),
+                padding: const EdgeInsets.symmetric(vertical: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
                       //mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text("Registro de transacciones",
                             style: TextStyle(
                               color: Colors.white,
@@ -112,14 +111,14 @@ class PagePerfil extends StatelessWidget {
                 height: 20,
               ),
               Container(
-                color: Color.fromARGB(255, 56, 55, 55),
-                padding: EdgeInsets.symmetric(vertical: 25),
+                color: const Color.fromARGB(255, 56, 55, 55),
+                padding: const EdgeInsets.symmetric(vertical: 25),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: <Widget>[
                     Column(
                       //mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
+                      children: const <Widget>[
                         Text("Registro de Retiro",
                             style: TextStyle(
                               color: Colors.white,
