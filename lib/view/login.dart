@@ -7,16 +7,15 @@ import 'package:flutter_application_banca/service/http_service.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class MyLoginPage extends StatefulWidget {
-  const MyLoginPage({Key? key}) : super(key: key);
+class LoginPage extends StatefulWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
-  State<MyLoginPage> createState() => _MyLoginPageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _MyLoginPageState extends State<MyLoginPage> {
+class _LoginPageState extends State<LoginPage> {
   final number = "+01 311 6900";
-
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -64,6 +63,46 @@ class _MyLoginPageState extends State<MyLoginPage> {
     );
   }
 
+  void _closeapplication(BuildContext context) async {
+    final result = await showDialog(
+      context: context,
+      barrierDismissible: false,
+      builder: (BuildContext context) => AlertDialog(
+        title: const Text("SALIDA"),
+        content: const Text("¿Deseas salir de la aplicación?"),
+        actions: [
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text(
+              "No",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          TextButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            child: const Text(
+              "Si",
+              style: TextStyle(
+                fontSize: 20,
+                color: Colors.black,
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+    if (result ?? true) {
+      if (Platform.isAndroid) {
+        SystemNavigator.pop();
+      } else if (Platform.isIOS) {
+        exit(0);
+      }
+    }
+  }
+
   void _backCall(BuildContext context) async {
     final result = await showDialog(
       context: context,
@@ -104,46 +143,6 @@ class _MyLoginPageState extends State<MyLoginPage> {
     if (result ?? false) {
       // ignore: deprecated_member_use
       await launch("tel:$number");
-    }
-  }
-
-  void _closeapplication(BuildContext context) async {
-    final result = await showDialog(
-      context: context,
-      barrierDismissible: false,
-      builder: (BuildContext context) => AlertDialog(
-        title: const Text("SALIDA"),
-        content: const Text("¿Deseas salir de la aplicación?"),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text(
-              "No",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          ),
-          TextButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            child: const Text(
-              "Si",
-              style: TextStyle(
-                fontSize: 20,
-                color: Colors.black,
-              ),
-            ),
-          )
-        ],
-      ),
-    );
-    if (result ?? true) {
-      if (Platform.isAndroid) {
-        SystemNavigator.pop();
-      } else if (Platform.isIOS) {
-        exit(0);
-      }
     }
   }
 }

@@ -8,7 +8,7 @@ import 'package:flutter_application_banca/view/perfil.dart';
 //import 'package:http/http.dart' as http;
 import 'dart:async';
 
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
 //import 'dart:convert';
 //import 'package:flutter_application_banca/main.dart';
@@ -435,7 +435,7 @@ class _HomeState extends State<Home> {
       Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => const MyLoginPage(),
+          builder: (context) => const LoginPage(),
         ),
       );
       /*await FirebaseAuth.instance.signOut().then((value) {

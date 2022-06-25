@@ -125,7 +125,7 @@ class HttpService {
         } else {
           await EasyLoading.showSuccess(json[0]);
           Navigator.pushReplacement(context,
-              MaterialPageRoute(builder: (context) => const MyLoginPage()));
+              MaterialPageRoute(builder: (context) => const LoginPage()));
         }
       } else {
         await EasyLoading.showError(
