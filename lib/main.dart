@@ -1,6 +1,7 @@
 //import 'package:http/http.dart' as http;
-
+import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_banca/view/inicio.dart';
 import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 //import 'package:shared_preferences/shared_preferences.dart';
@@ -9,8 +10,11 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 //import 'componentes/BarNavigationHome.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
+  FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
   runApp(const MyApp());
   configLoading();
+  FlutterNativeSplash.remove();
 }
 
 void configLoading() {
@@ -35,7 +39,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo Banca Movil',
+      title: 'INTIBANKAPP',
       home: const MyLoginPage(),
       debugShowCheckedModeBanner: false,
       builder: EasyLoading.init(),

@@ -25,17 +25,30 @@ class _MyLoginPageState extends State<MyLoginPage> {
         return Future.value(false);
       },
       child: Scaffold(
-        body: ListView(
-          scrollDirection: Axis.vertical,
-          children: const <Widget>[
-            TitleLogin(),
-            SizedBox(
-              height: 0,
+        body: Container(
+          alignment: Alignment.center,
+          decoration: const BoxDecoration(
+            image: DecorationImage(
+              alignment: Alignment.center,
+              opacity: 230.0,
+              fit: BoxFit.fill,
+              image: AssetImage("assets/images/fondo.jpg"),
             ),
-            TextFieldUserPass(),
-          ],
+            gradient: LinearGradient(
+              colors: [Colors.blueAccent, Colors.white, Colors.blueAccent],
+            ),
+          ),
+          child: ListView(
+            scrollDirection: Axis.vertical,
+            children: const <Widget>[
+              TitleLogin(),
+              SizedBox(
+                height: 0,
+              ),
+              TextFieldUserPass(),
+            ],
+          ),
         ),
-        backgroundColor: Colors.blueAccent,
         floatingActionButton: FloatingActionButton(
           elevation: 12,
           mini: true,
@@ -145,16 +158,13 @@ class TitleLogin extends StatelessWidget {
     return Container(
       height: 250,
       width: 400,
-      decoration: const BoxDecoration(
-        gradient: LinearGradient(
-            colors: [Colors.blueAccent, Colors.white, Colors.blueAccent]),
-      ),
       alignment: Alignment.center,
-      child: const Text(
-        "BANCA MOVIL",
-        textAlign: TextAlign.center,
-        style: TextStyle(
-            fontSize: 35, color: Colors.black, fontWeight: FontWeight.bold),
+      child: Center(
+        child: Image.asset(
+          "assets/icons/logoinit.png",
+          width: 240,
+          height: 240,
+        ),
       ),
     );
   }
@@ -175,40 +185,6 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
 
   final focus = FocusNode();
 
-  /*_iniciarsesion(String emailInput, String passInput) async {
-    try {
-      if (emailInput.isEmpty) {
-        EasyLoading.showInfo('Ingrese el correo y la contraseña');
-      } else if (passInput.isEmpty) {
-        EasyLoading.showInfo('Ingrese la contraseña');
-      } else {
-        if (emailInput.contains("@")) {
-          EasyLoading.show(status: "Loading....");
-          await FirebaseAuth.instance.signInWithEmailAndPassword(
-            email: emailInput,
-            password: passInput,
-          );
-          EasyLoading.showSuccess('Bienvenido!');
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Home()));
-          //EasyLoading.dismiss();
-          _emailcontroller.clear();
-          _passwordcontroller.clear();
-        } else {
-          EasyLoading.showError('Correo Electronico no valido');
-        }
-      }
-    } on FirebaseAuthException catch (e) {
-      if (e.code == 'user-not-found') {
-        EasyLoading.showInfo("El correo electronico no esta registrado");
-        //print("Usuario no registrado con ese correo electronico");
-      } else if (e.code == 'wrong-password') {
-        EasyLoading.showError('Contraseña Incorrecta');
-        //print("Contraseña Incorrecta");
-      }
-    }
-  }*/
-
   @override
   void dispose() {
     _emailcontroller.dispose();
@@ -220,13 +196,13 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
   Widget build(BuildContext context) {
     return SingleChildScrollView(
       child: Transform.translate(
-        offset: const Offset(0, -30),
+        offset: const Offset(0, 20),
         child: Card(
           elevation: 2,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
           ),
-          margin: const EdgeInsets.only(left: 10, right: 10),
+          margin: const EdgeInsets.only(left: 20, right: 20),
           child: Column(
             children: <Widget>[
               SizedBox(

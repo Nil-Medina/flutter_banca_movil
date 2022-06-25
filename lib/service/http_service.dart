@@ -2,6 +2,7 @@
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_banca/entities/Data_Users.dart';
 import 'package:flutter_application_banca/view/inicio.dart';
 import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
