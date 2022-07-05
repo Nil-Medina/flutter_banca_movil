@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "1039013092020",
-    "project_id": "mibancamovil-350600",
-    "storage_bucket": "mibancamovil-350600.appspot.com"
+    "project_number": "147074571551",
+    "project_id": "intibank-notification",
+    "storage_bucket": "intibank-notification.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1039013092020:android:17e4d22a596577f86a15e1",
+        "mobilesdk_app_id": "1:147074571551:android:7984f9c4d4e862c0dee42a",
         "android_client_info": {
           "package_name": "com.example.flutter_application_banca"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1039013092020-q8sj9lstc0geotk2gnev88ciu4r61h88.apps.googleusercontent.com",
+          "client_id": "147074571551-68e88v80mq0qg2o8j6sgst12q0f4m9f1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.flutter_application_banca",
+            "certificate_hash": "8e77ff8c3be3f0a635907aeff58e58a4519cb3d9"
+          }
+        },
+        {
+          "client_id": "147074571551-nedvr9jvlom5ppfjqokddo4pucfrls96.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyA_kxdLSOW3RYdZpMgb9lJy8TjUqFraxAY"
+          "current_key": "AIzaSyCgYWnBUFP6KZj3__mKunyL0IecYCYyWq8"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1039013092020-q8sj9lstc0geotk2gnev88ciu4r61h88.apps.googleusercontent.com",
+              "client_id": "147074571551-nedvr9jvlom5ppfjqokddo4pucfrls96.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
