@@ -18,7 +18,7 @@ void main() async {
   //await PushNotificationService.initializeApp();
   await Firebase.initializeApp();
 
-  runApp(MyApp());
+  runApp(const MyApp());
 
   WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   FlutterNativeSplash.preserve(widgetsBinding: widgetsBinding);
