@@ -14,9 +14,9 @@ import 'package:firebase_core/firebase_core.dart';
 //import 'componentes/BarNavigationHome.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
+  //WidgetsFlutterBinding.ensureInitialized();
   //await PushNotificationService.initializeApp();
-  await Firebase.initializeApp();
+  //await Firebase.initializeApp();
 
   runApp(const MyApp());
 

@@ -131,7 +131,7 @@ class _PageTransferState extends State<PageTransfer> {
                     ),
                     TextButton(
                       onPressed: () {
-                        EasyLoading.show(status: 'loading...');
+                        //EasyLoading.show(status: 'loading...');
                       },
                       child: Container(
                         decoration: BoxDecoration(
