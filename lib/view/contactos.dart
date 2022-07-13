@@ -25,6 +25,9 @@ class _ContactNew extends State<Contact> {
           appBar: AppBar(
             title: const Center(child: Text("Mi contactos")),
             backgroundColor: Colors.black,
+
+            //titleTextStyle: Colors.black,
+            //backgroundColor: Colors.black,
           ),
           body: ListView(
             children: <Widget>[
@@ -34,7 +37,7 @@ class _ContactNew extends State<Contact> {
                     ListTile(
                       leading: Icon(Icons.face_outlined),
                       title: Text('Alexander Gonza caceres'),
-                      tileColor: Color.fromARGB(139, 58, 55, 55),
+                      tileColor: Color.fromARGB(138, 29, 28, 28),
                       subtitle: Text('+51 901576482'),
                     ),
                     const SizedBox(
