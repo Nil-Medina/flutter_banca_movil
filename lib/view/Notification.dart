@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_banca/view/inicio.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({
@@ -14,57 +15,71 @@ class Notifications extends StatefulWidget {
 class _NotificacionesNew extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    Home:
+    Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.notification_add),
-        title: const Center(child: Text("NOTIFICACIONES")),
+        leading: Icon(Icons.move_down),
+        title: const Center(child: Text("Registro de Retiro")),
         backgroundColor: Colors.black,
 
         //titleTextStyle: Colors.black,
         //backgroundColor: Colors.black,
       ),
-      body: ListView(
-        children: <Widget>[
-          /*ListTile(
-            leading: Icon(Icons.notification_add),
-            title: Text("NOVEDADES"),
-            iconColor: Colors.blue,
-            textColor: Color.fromARGB(137, 47, 1, 90),
-          ),*/
-          Card(
-              color: Color.fromARGB(183, 43, 166, 214),
-              child: SizedBox(
-                width: 200,
-                height: 100,
-                child: Text(
-                  "¡Pronto se aperturá un nuevo locar cerca a ti!",
-                  style: TextStyle(color: Colors.black87),
-                ),
-              )),
-          const SizedBox(
-            height: 10,
-          ),
-          Card(
-              color: Color.fromARGB(183, 43, 166, 214),
-              child: SizedBox(
-                width: 200,
-                height: 100,
-                child: Text(
-                  "¡Pronto se aperturá un nuevo locar cerca a ti!",
-                  style: TextStyle(color: Colors.black87),
-                ),
-              )),
-        ],
-      ),
     );
-    /* MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        appBar: AppBar(
-          title: const Center(child: Text("NOTIFICACIONES")),
-          backgroundColor: Colors.black,
+    final PageController controller = PageController();
+    return PageView(
+      scrollDirection: Axis.horizontal,
+      controller: controller,
+      children: const <Widget>[
+        Card(
+          color: Color.fromARGB(202, 155, 155, 155),
+          /*shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),*/
+          child: Padding(
+            padding: const EdgeInsets.all(3),
+            child: ListTile(
+                tileColor: Color.fromARGB(96, 64, 7, 155),
+                contentPadding: const EdgeInsets.all(12),
+                /*shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),*/
+                leading: const Icon(
+                  Icons.notification_important_outlined,
+                  size: 40,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+                title: Text("PRONTO NUEVA SUCURSAL"),
+                subtitle: Text("2 de julio del 2022 - 11:12 am"),
+                iconColor: Colors.white,
+                textColor: Color.fromARGB(255, 255, 255, 255)),
+          ),
         ),
-      ),
-    );*/
+        Card(
+          color: Color.fromARGB(202, 155, 155, 155),
+          /*shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(10),
+              ),*/
+          child: Padding(
+            padding: const EdgeInsets.all(3),
+            child: ListTile(
+                tileColor: Color.fromARGB(96, 64, 7, 155),
+                contentPadding: const EdgeInsets.all(12),
+                /* shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),*/
+                leading: const Icon(
+                  Icons.important_devices,
+                  size: 40,
+                  color: Color.fromARGB(255, 255, 255, 255),
+                ),
+                title: Text("SE VIENE NUEVAS ACTUALIZACIONES"),
+                subtitle: Text("2 de julio del 2022 - 11:12 am"),
+                iconColor: Colors.white,
+                textColor: Color.fromARGB(255, 255, 255, 255)),
+          ),
+        )
+      ],
+    );
   }
 }
