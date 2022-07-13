@@ -1,15 +1,15 @@
 //import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/entities/Data_Users.dart';
-import 'package:flutter_application_banca/entities/users_provider.dart';
+//import 'package:flutter_application_banca/entities/users_provider.dart';
 import 'package:flutter_application_banca/view/TransferPage.dart';
 import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_application_banca/view/perfil.dart';
-import 'package:http/http.dart' as http;
+//import 'package:http/http.dart' as http;
 import 'dart:async';
-import 'dart:convert';
+//import 'dart:convert';
 
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
 //import 'dart:convert';
 //import 'package:flutter_application_banca/main.dart';
@@ -17,8 +17,13 @@ import 'package:provider/provider.dart';
 //import 'package:flutter_banca_movil/main.dart';
 
 class Home extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
+  final datapage;
+  final int index;
   const Home({
     Key? key,
+    this.datapage,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -26,25 +31,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  //late Map? data;
-  //late List? usersData;
-  final _client = http.Client();
-  final _usersUrl =
-      Uri.parse('https://banca-movil.herokuapp.com/api/authUsers');
-  getUsers() async {
-    http.Response response = await _client.get(_usersUrl);
-    Map<String, dynamic> map = json.decode(response.body);
-    List<dynamic> data = map['users'];
-    setState(() {
-      data[0];
-    });
-    print(data[0]);
-  }
-
   @override
   void initState() {
     super.initState();
-    getUsers();
   }
 
   @override
@@ -82,7 +71,10 @@ class _HomeState extends State<Home> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => const PagePerfil(),
+                    builder: (context) => PagePerfil(
+                      index: widget.index,
+                      dataperfil: widget.datapage,
+                    ),
                   ),
                 );
               },
@@ -189,8 +181,10 @@ class _HomeState extends State<Home> {
                         const SizedBox(
                           height: 10,
                         ),
-                        const Text(
-                          "Jean Pierre Vasquez",
+                        Text(
+                          widget.datapage[widget.index]['name'] +
+                              " " +
+                              widget.datapage[widget.index]['lastname'],
                           style: TextStyle(
                             color: Colors.black,
                             fontSize: 25,

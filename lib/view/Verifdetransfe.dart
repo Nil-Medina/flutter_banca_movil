@@ -167,10 +167,10 @@ class _PagVerificationsState extends State<PagVerifications> {
                   child: TextButton(
                     onPressed: () {
                       //EasyLoading.show(status: 'loading...');
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (context) => const Home()),
-                      );
+                      //Navigator.push(
+                      //context,
+                      //MaterialPageRoute(builder: (context) => const Home()),
+                      //);
                     },
                     child: Container(
                       decoration: BoxDecoration(
