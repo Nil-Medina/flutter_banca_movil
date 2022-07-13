@@ -51,7 +51,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'INTIBANKAPP',
-      home: const Home(),
+      home: const LoginPage(),
       debugShowCheckedModeBanner: false,
       builder: EasyLoading.init(),
     );

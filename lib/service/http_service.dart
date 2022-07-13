@@ -41,8 +41,8 @@ class HttpService {
           }*/
           //storage.write(key: "jwt", value: json[0]);
           await EasyLoading.showSuccess("Bienvenido");
-          await Navigator.push(
-              context, MaterialPageRoute(builder: (context) => const Home()));
+          //await Navigator.push(
+          //context, MaterialPageRoute(builder: (context) => const Home()));
         } else if (json[0] == '\"email\" must be a valid email') {
           EasyLoading.showInfo("Debe ser un correo electrónico válido");
         } else if (json[0] ==

@@ -6,8 +6,13 @@ import 'package:flutter_application_banca/view/Retiros.dart';
 //import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
 
 class PagePerfil extends StatefulWidget {
+  // ignore: prefer_typing_uninitialized_variables
+  final dataperfil;
+  final int index;
   const PagePerfil({
     Key? key,
+    this.dataperfil,
+    required this.index,
   }) : super(key: key);
 
   @override
@@ -57,8 +62,10 @@ class _PagePerfilState extends State<PagePerfil> {
                     ),
                     margin: const EdgeInsets.only(bottom: 10),
                   ),
-                  const Text(
-                    "Jean Pierre Vasquez",
+                  Text(
+                    widget.dataperfil[widget.index]['name'] +
+                        ' ' +
+                        widget.dataperfil[widget.index]['lastname'],
                     style: TextStyle(
                         color: Colors.white,
                         fontSize: 15,

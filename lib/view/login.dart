@@ -1,11 +1,14 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_application_banca/view/inicio.dart';
 import 'package:flutter_application_banca/view/registro.dart';
-import 'package:flutter_application_banca/service/http_service.dart';
+//import 'package:flutter_application_banca/service/http_service.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:http/http.dart' as http;
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -184,6 +187,85 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
 
   final focus = FocusNode();
 
+  late Map? data;
+  late List? usersData;
+  final _clientGet = http.Client();
+  final _usersUrl =
+      Uri.parse('https://banca-movil.herokuapp.com/api/authUsers');
+
+  getuser() async {
+    http.Response response = await _clientGet.get(_usersUrl);
+    data = json.decode(response.body);
+    setState(() {
+      usersData = data?['users'];
+      for (int index = 0; index < usersData!.length; index++) {
+        print(usersData?[index]['name'] +
+            ' ' +
+            usersData?[index]['lastname'] +
+            "\n" +
+            usersData?[index]['email']);
+      }
+    });
+  }
+
+  static final _client = http.Client();
+  static final _loginUrl =
+      Uri.parse('https://banca-movil.herokuapp.com/api/login');
+
+  login(email, password, context) async {
+    if (email == null || email == '') {
+      await EasyLoading.showInfo("Ingrese Correo Electronico y Contraseña");
+    } else if (password == null || password == '') {
+      EasyLoading.showInfo("Ingrese Contraseña");
+    } else {
+      http.Response response = await _client.post(
+        _loginUrl,
+        body: {
+          "email": email,
+          "password": password,
+        },
+      );
+
+      if (response.statusCode == 200) {
+        print(jsonDecode(response.body));
+        var json = jsonDecode(response.body);
+        if (json[0] == 'success') {
+          for (int i = 0; i < usersData!.length; i++) {
+            if (email == usersData?[i]['email']) {
+              await EasyLoading.showSuccess("Bienvenido");
+              await Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Home(
+                            datapage: usersData,
+                            index: i,
+                          )));
+            } else {
+              await EasyLoading.showError("Ocurrio un error!");
+            }
+          }
+        } else if (json[0] == '\"email\" must be a valid email') {
+          EasyLoading.showInfo("Debe ser un correo electrónico válido");
+        } else if (json[0] ==
+            '\"password\" length must be at least 6 characters long') {
+          EasyLoading.showInfo(
+              "La longitud de la contraseña debe tener al menos 6 caracteres");
+        } else {
+          EasyLoading.showError(json[0]);
+        }
+      } else {
+        await EasyLoading.showError(
+            "Error Code : ${response.statusCode.toString()}");
+      }
+    }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getuser();
+  }
+
   @override
   void dispose() {
     _emailcontroller.dispose();
@@ -281,7 +363,7 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
                           var email = _emailcontroller.text.toString();
                           var password = _passwordcontroller.text.toString();
                           EasyLoading.show(status: '...Loading');
-                          HttpService.login(email, password, context);
+                          login(email, password, context);
                         },
                         child: Container(
                           height: 50,
