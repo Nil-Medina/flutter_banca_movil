@@ -39,6 +39,7 @@ class _PagePerfilState extends State<PagePerfil> {
               height: 220,
               decoration: const BoxDecoration(
                 image: DecorationImage(
+                  opacity: 60.0,
                   image: AssetImage("assets/images/lugar.jpg"),
                   fit: BoxFit.cover,
                 ),
@@ -56,7 +57,7 @@ class _PagePerfilState extends State<PagePerfil> {
                       ),
                       shape: BoxShape.circle,
                       border: Border.all(
-                        color: Colors.white,
+                        color: Colors.black,
                         width: 4,
                       ),
                     ),
@@ -66,9 +67,19 @@ class _PagePerfilState extends State<PagePerfil> {
                     widget.dataperfil[widget.index]['name'] +
                         ' ' +
                         widget.dataperfil[widget.index]['lastname'],
-                    style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 15,
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 19,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    widget.dataperfil[widget.index]['dni'].toString(),
+                    style: const TextStyle(
+                        color: Colors.black,
+                        fontSize: 19,
                         fontWeight: FontWeight.bold),
                   ),
                   const SizedBox(

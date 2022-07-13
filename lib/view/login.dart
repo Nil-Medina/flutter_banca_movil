@@ -200,10 +200,14 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
       usersData = data?['users'];
       for (int index = 0; index < usersData!.length; index++) {
         print(usersData?[index]['name'] +
-            ' ' +
+            '\n' +
             usersData?[index]['lastname'] +
-            "\n" +
-            usersData?[index]['email']);
+            '\n' +
+            usersData?[index]['_id'] +
+            '\n' +
+            usersData?[index]['email'] +
+            '\n' +
+            usersData?[index]['dni'].toString());
       }
     });
   }
