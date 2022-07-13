@@ -370,7 +370,7 @@ class _HomeState extends State<Home> {
                                       widget.datapage[widget.index]['saldo']
                                           .toString() +
                                       '.00',
-                                  style: TextStyle(fontSize: 17),
+                                  style: const TextStyle(fontSize: 17),
                                 ),
                               ),
                             ),
