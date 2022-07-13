@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/entities/Data_Users.dart';
 import 'package:flutter_application_banca/entities/users_provider.dart';
 import 'package:flutter_application_banca/view/TransferPage.dart';
+import 'package:flutter_application_banca/view/contactos.dart';
 import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_application_banca/view/perfil.dart';
 import 'package:http/http.dart' as http;
@@ -279,7 +280,13 @@ class _HomeState extends State<Home> {
                           ),
                         ),
                         TextButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Contact()),
+                            );
+                          },
                           child: Container(
                             height: 100,
                             width: 140,
@@ -297,10 +304,16 @@ class _HomeState extends State<Home> {
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(100),
                                   ),
-                                  child: const Icon(
-                                    Icons.supervisor_account_rounded,
-                                    color: Colors.black,
-                                    size: 55,
+                                  child: const IconButton(
+                                    icon: Icon(
+                                      Icons.supervisor_account_rounded,
+                                      color: Colors.black,
+                                      size: 55,
+                                    ),
+                                    onPressed: null,
+                                    // Icons.supervisor_account_rounded,
+                                    //color: Colors.black,
+                                    //size: 55,
                                   ),
                                 ),
                                 const SizedBox(

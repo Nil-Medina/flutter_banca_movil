@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_banca/view/Notification.dart';
+import 'package:flutter_application_banca/view/RegTransaccion.dart';
+import 'package:flutter_application_banca/view/Retiros.dart';
 
 //import 'package:flutter_banca_movil/componentes/BarNavigationHome.dart';
 
@@ -71,67 +74,160 @@ class _PagePerfilState extends State<PagePerfil> {
               height: 25,
             ),
             Container(
-              color: const Color.fromARGB(255, 56, 55, 55),
-              padding: const EdgeInsets.symmetric(vertical: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text("NOTIFICACIONES",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            //Alignment.topLeft,
-                          )),
-                    ],
+              child: Row(children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const Notifications()),
+                    );
+                  },
+                  child: Container(
+                    child: Row(
+                      children: <Widget>[
+                        Container(
+                          child: const Icon(
+                            Icons.notification_add,
+                            color: Colors.green,
+                            size: 35,
+                          ),
+                        ),
+                        const Text(
+                          "Notificaciones",
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                )
+              ]),
+            ),
+            Container(
+              // color: Color.fromARGB(179, 138, 116, 180),
+              // padding: const EdgeInsets.symmetric(vertical: 5),
+              child: Row(children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) => const RegTransferencia()),
+                    );
+                  },
+                  child: Container(
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          child: const Icon(
+                            Icons.attach_money,
+                            color: Colors.green,
+                            size: 35,
+                          ),
+                        ),
+                        const Text(
+                          "Registro de transferencia ",
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                        ),
+                      ],
+                    ),
+                  ),
+                )
+              ]),
             ),
             const SizedBox(
               height: 20,
             ),
             Container(
-              color: const Color.fromARGB(255, 56, 55, 55),
-              padding: const EdgeInsets.symmetric(vertical: 25),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text("Registro de transacciones",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            //Alignment.topLeft,
-                          )),
-                    ],
+              child: Row(children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(builder: (context) => const Retiro()),
+                    );
+                  },
+                  child: Container(
+                    child: Row(
+                      // mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Container(
+                          child: const Icon(
+                            Icons.attach_money,
+                            color: Colors.green,
+                            size: 35,
+                          ),
+                        ),
+                        const Text(
+                          "Registro de Retiro",
+                          style: TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                        ),
+                      ],
+                    ),
                   ),
-                ],
-              ),
+                )
+              ]),
             ),
             const SizedBox(
-              height: 20,
+              height: 120,
             ),
-            Container(
-              color: const Color.fromARGB(255, 56, 55, 55),
-              padding: const EdgeInsets.symmetric(vertical: 25),
+
+            /////////////////// REDES
+            ///
+            ///
+            Transform.translate(
+              offset: const Offset(0, -60),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: <Widget>[
-                  Column(
-                    //mainAxisAlignment: MainAxisAlignment.center,
-                    children: const <Widget>[
-                      Text("Registro de Retiro",
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            //Alignment.topLeft,
-                          )),
-                    ],
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const Notifications()),
+                      );
+                    },
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          /*const SizedBox(
+                            height: 3,
+                          ),*/
+                          const Text(
+                            "facebook",
+                            style:
+                                TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const RegTransferencia()),
+                      );
+                    },
+                    child: Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          const SizedBox(
+                            height: 3,
+                          ),
+                          const Text(
+                            "Youtube",
+                            style:
+                                TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
+                          ),
+                        ],
+                      ),
+                    ),
                   ),
                 ],
               ),
