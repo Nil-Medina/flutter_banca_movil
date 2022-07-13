@@ -3,6 +3,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_application_banca/view/Verifdetransfe.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PageTransfer extends StatefulWidget {
@@ -131,7 +132,12 @@ class _PageTransferState extends State<PageTransfer> {
                     ),
                     TextButton(
                       onPressed: () {
-                        //EasyLoading.show(status: 'loading...');
+                        EasyLoading.show(status: 'loading...');
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const PagVerifications()),
+                        );
                       },
                       child: Container(
                         decoration: BoxDecoration(
