@@ -107,7 +107,7 @@ class _PagVerificationsState extends State<PagVerifications> {
                       width: 255,
                       height: 50,
                       child: const Text(
-                        'Para:',
+                        'Para: kevin@gmail.com',
                         style: TextStyle(fontSize: 21),
                       ),
                       decoration: const BoxDecoration(
@@ -120,8 +120,8 @@ class _PagVerificationsState extends State<PagVerifications> {
                       decoration: const BoxDecoration(
                         color: Color.fromARGB(0, 191, 192, 197),
                       ),
-                      child:
-                          const Text("Monto:", style: TextStyle(fontSize: 21)),
+                      child: const Text("Monto:150",
+                          style: TextStyle(fontSize: 21)),
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -132,7 +132,7 @@ class _PagVerificationsState extends State<PagVerifications> {
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(0, 63, 81, 181),
                           ),
-                          child: const Text("Fecha:",
+                          child: const Text("Fecha:13/07/2022",
                               style: TextStyle(fontSize: 21)),
                         ),
                         Container(
@@ -141,7 +141,7 @@ class _PagVerificationsState extends State<PagVerifications> {
                           decoration: const BoxDecoration(
                             color: Color.fromARGB(0, 63, 81, 181),
                           ),
-                          child: const Text("Hora:",
+                          child: const Text("Hora:8:40 am",
                               style: TextStyle(fontSize: 21)),
                         )
                       ],
