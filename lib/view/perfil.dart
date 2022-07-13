@@ -105,7 +105,7 @@ class _PagePerfilState extends State<PagePerfil> {
             ),
             Container(
               // color: Color.fromARGB(179, 138, 116, 180),
-              // padding: const EdgeInsets.symmetric(vertical: 5),
+              //padding: const EdgeInsets.symmetric(vertical: 5),
               child: Row(children: [
                 TextButton(
                   onPressed: () {
@@ -121,7 +121,7 @@ class _PagePerfilState extends State<PagePerfil> {
                       children: <Widget>[
                         Container(
                           child: const Icon(
-                            Icons.attach_money,
+                            Icons.handshake,
                             color: Colors.green,
                             size: 35,
                           ),
@@ -154,7 +154,7 @@ class _PagePerfilState extends State<PagePerfil> {
                       children: <Widget>[
                         Container(
                           child: const Icon(
-                            Icons.attach_money,
+                            Icons.move_down,
                             color: Colors.green,
                             size: 35,
                           ),
