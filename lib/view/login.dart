@@ -203,8 +203,6 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
             '\n' +
             usersData?[index]['lastname'] +
             '\n' +
-            usersData?[index]['_id'] +
-            '\n' +
             usersData?[index]['email'] +
             '\n' +
             usersData?[index]['dni'].toString());
@@ -238,12 +236,14 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
             if (email == usersData?[i]['email']) {
               await EasyLoading.showSuccess("Bienvenido");
               await Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => Home(
-                            datapage: usersData,
-                            index: i,
-                          )));
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Home(
+                    datapage: usersData,
+                    index: i,
+                  ),
+                ),
+              );
             } else {
               await EasyLoading.showError("Ocurrio un error!");
             }
