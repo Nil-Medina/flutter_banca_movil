@@ -365,8 +365,11 @@ class _HomeState extends State<Home> {
                                       fontWeight: FontWeight.bold,
                                       fontSize: 20.5),
                                 ),
-                                subtitle: const Text(
-                                  'Saldo Disponible: S/.0.00',
+                                subtitle: Text(
+                                  'Saldo Disponible: S/.' +
+                                      widget.datapage[widget.index]['saldo']
+                                          .toString() +
+                                      '.00',
                                   style: TextStyle(fontSize: 17),
                                 ),
                               ),
