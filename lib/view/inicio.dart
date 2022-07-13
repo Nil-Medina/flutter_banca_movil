@@ -186,7 +186,7 @@ class _HomeState extends State<Home> {
                           widget.datapage[widget.index]['name'] +
                               " " +
                               widget.datapage[widget.index]['lastname'],
-                          style: TextStyle(
+                          style: const TextStyle(
                             color: Colors.black,
                             fontSize: 25,
                           ),
@@ -199,20 +199,23 @@ class _HomeState extends State<Home> {
                           alignment: Alignment.center,
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
-                            children: const <Widget>[
-                              Text(
+                            children: <Widget>[
+                              const Text(
                                 "Mi Saldo",
                                 style: TextStyle(
                                   fontSize: 27.5,
                                   color: Colors.black,
                                 ),
                               ),
-                              SizedBox(
+                              const SizedBox(
                                 height: 5,
                               ),
                               Text(
-                                "S/200.00",
-                                style: TextStyle(
+                                "S/." +
+                                    widget.datapage[widget.index]['saldo']
+                                        .toString() +
+                                    '.00',
+                                style: const TextStyle(
                                     fontSize: 35,
                                     color: Colors.black,
                                     fontWeight: FontWeight.bold),
