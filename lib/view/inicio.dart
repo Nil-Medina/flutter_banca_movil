@@ -135,7 +135,7 @@ class _HomeState extends State<Home> {
                           height: 50,
                           alignment: Alignment.center,
                           child: const Text(
-                            "BIENVENIDO A TU BANCA MOVIL",
+                            "BIENVENIDO A INTIBANK",
                             style: TextStyle(
                               fontSize: 22,
                               color: Colors.black,
