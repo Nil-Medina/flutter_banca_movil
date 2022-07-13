@@ -2,23 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class RegTransferencia extends StatefulWidget {
-  const RegTransferencia({
+class Retiro extends StatefulWidget {
+  const Retiro({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<RegTransferencia> createState() => _RegTransferenciaNew();
+  State<Retiro> createState() => _RetirosNew();
 }
 
-class _RegTransferenciaNew extends State<RegTransferencia> {
+class _RetirosNew extends State<Retiro> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text("REGISTROS")),
+          title: const Center(child: Text("RETIROS")),
           backgroundColor: Colors.black,
         ),
       ),

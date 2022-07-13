@@ -2,23 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 
-class RegTransferencia extends StatefulWidget {
-  const RegTransferencia({
+class Notifications extends StatefulWidget {
+  const Notifications({
     Key? key,
   }) : super(key: key);
 
   @override
-  State<RegTransferencia> createState() => _RegTransferenciaNew();
+  State<Notifications> createState() => _NotificacionesNew();
 }
 
-class _RegTransferenciaNew extends State<RegTransferencia> {
+class _NotificacionesNew extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          title: const Center(child: Text("REGISTROS")),
+          title: const Center(child: Text("NOTIFICACIONES")),
           backgroundColor: Colors.black,
         ),
       ),
