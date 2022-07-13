@@ -166,7 +166,7 @@ class _PagVerificationsState extends State<PagVerifications> {
                 Center(
                   child: TextButton(
                     onPressed: () {
-                      EasyLoading.show(status: 'loading...');
+                      //EasyLoading.show(status: 'loading...');
                       Navigator.push(
                         context,
                         MaterialPageRoute(builder: (context) => const Home()),
