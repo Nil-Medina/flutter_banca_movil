@@ -5,10 +5,11 @@ import 'package:flutter_application_banca/entities/users_provider.dart';
 import 'package:flutter_application_banca/view/TransferPage.dart';
 import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_application_banca/view/perfil.dart';
-//import 'package:http/http.dart' as http;
+import 'package:http/http.dart' as http;
 import 'dart:async';
+import 'dart:convert';
 
-//import 'package:provider/provider.dart';
+import 'package:provider/provider.dart';
 
 //import 'dart:convert';
 //import 'package:flutter_application_banca/main.dart';
@@ -25,6 +26,27 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  //late Map? data;
+  //late List? usersData;
+  final _client = http.Client();
+  final _usersUrl =
+      Uri.parse('https://banca-movil.herokuapp.com/api/authUsers');
+  getUsers() async {
+    http.Response response = await _client.get(_usersUrl);
+    Map<String, dynamic> map = json.decode(response.body);
+    List<dynamic> data = map['users'];
+    setState(() {
+      data[0];
+    });
+    print(data[0]);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getUsers();
+  }
+
   @override
   Widget build(BuildContext context) {
     //final userProvider = Provider.of<UsersProvider>(context);
