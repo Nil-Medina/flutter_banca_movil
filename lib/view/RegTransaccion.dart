@@ -1,4 +1,6 @@
-import 'dart:async';
+//import 'dart:async';
+
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,7 @@ class _RegTransferenciaNew extends State<RegTransferencia> {
       debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
-          leading: Icon(Icons.handshake),
+          leading: const Icon(Icons.handshake),
           title: const Center(
               child: Text(
             "GIROS",
@@ -30,7 +32,7 @@ class _RegTransferenciaNew extends State<RegTransferencia> {
         ),
         body: ListView(
           children: <Widget>[
-            ListTile(
+            const ListTile(
               leading: Icon(Icons.check),
               title: Text("RECIENTE"),
               iconColor: Colors.blue,
@@ -48,7 +50,7 @@ class _RegTransferenciaNew extends State<RegTransferencia> {
                 child: Column(
                   children: <Widget>[
                     Card(
-                      color: Color.fromARGB(202, 155, 155, 155),
+                      color: const Color.fromARGB(202, 155, 155, 155),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
@@ -81,14 +83,14 @@ class _RegTransferenciaNew extends State<RegTransferencia> {
                       height: 5,
                     ),
                     Card(
-                      color: Color.fromARGB(202, 155, 155, 155),
+                      color: const Color.fromARGB(202, 155, 155, 155),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: Padding(
                         padding: const EdgeInsets.all(3),
                         child: ListTile(
-                          tileColor: Color.fromARGB(255, 164, 241, 241),
+                          tileColor: const Color.fromARGB(255, 164, 241, 241),
                           contentPadding: const EdgeInsets.all(12),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10),

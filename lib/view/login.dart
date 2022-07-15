@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_print, unnecessary_string_escapes
+
 import 'dart:convert';
 import 'dart:io';
 
@@ -199,13 +201,11 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
     setState(() {
       usersData = data?['users'];
       for (int index = 0; index < usersData!.length; index++) {
-        print(usersData?[index]['name'] +
-            '\n' +
-            usersData?[index]['lastname'] +
-            '\n' +
-            usersData?[index]['email'] +
-            '\n' +
-            usersData?[index]['dni'].toString());
+        if (usersData == usersData) {
+          print({'Conexion exitosa con la base de usuarios'});
+        } else {
+          print('Error de conexion');
+        }
       }
     });
   }
@@ -229,11 +229,11 @@ class _TextFieldUserPassState extends State<TextFieldUserPass> {
       );
 
       if (response.statusCode == 200) {
-        print(jsonDecode(response.body));
         var json = jsonDecode(response.body);
         if (json[0] == 'success') {
           for (int i = 0; i < usersData!.length; i++) {
             if (email == usersData?[i]['email']) {
+              print('Usuario Logueado');
               await EasyLoading.showSuccess("Bienvenido");
               await Navigator.push(
                 context,

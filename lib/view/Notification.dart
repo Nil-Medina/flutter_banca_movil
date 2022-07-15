@@ -1,7 +1,9 @@
-import 'dart:async';
+//import 'dart:async';
+
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/view/inicio.dart';
+//import 'package:flutter_application_banca/view/inicio.dart';
 
 class Notifications extends StatefulWidget {
   const Notifications({
@@ -15,10 +17,9 @@ class Notifications extends StatefulWidget {
 class _NotificacionesNew extends State<Notifications> {
   @override
   Widget build(BuildContext context) {
-    Home:
     Scaffold(
       appBar: AppBar(
-        leading: Icon(Icons.move_down),
+        leading: const Icon(Icons.move_down),
         title: const Center(child: Text("Registro de Retiro")),
         backgroundColor: Colors.black,
 
@@ -37,14 +38,14 @@ class _NotificacionesNew extends State<Notifications> {
                 borderRadius: BorderRadius.circular(10),
               ),*/
           child: Padding(
-            padding: const EdgeInsets.all(3),
+            padding: EdgeInsets.all(3),
             child: ListTile(
                 tileColor: Color.fromARGB(96, 64, 7, 155),
-                contentPadding: const EdgeInsets.all(12),
+                contentPadding: EdgeInsets.all(12),
                 /*shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),*/
-                leading: const Icon(
+                leading: Icon(
                   Icons.notification_important_outlined,
                   size: 40,
                   color: Color.fromARGB(255, 255, 255, 255),
@@ -61,14 +62,14 @@ class _NotificacionesNew extends State<Notifications> {
                 borderRadius: BorderRadius.circular(10),
               ),*/
           child: Padding(
-            padding: const EdgeInsets.all(3),
+            padding: EdgeInsets.all(3),
             child: ListTile(
                 tileColor: Color.fromARGB(96, 64, 7, 155),
-                contentPadding: const EdgeInsets.all(12),
+                contentPadding: EdgeInsets.all(12),
                 /* shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),*/
-                leading: const Icon(
+                leading: Icon(
                   Icons.important_devices,
                   size: 40,
                   color: Color.fromARGB(255, 255, 255, 255),

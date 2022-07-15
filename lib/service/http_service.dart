@@ -1,9 +1,9 @@
-// ignore_for_file: prefer_final_fields, unused_field, unnecessary_string_escapes
+// ignore_for_file: prefer_final_fields, unused_field, unnecessary_string_escapes, avoid_print
 
 import 'dart:convert';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/entities/Data_Users.dart';
-import 'package:flutter_application_banca/view/inicio.dart';
+//import 'package:flutter_application_banca/entities/Data_Users.dart';
+//import 'package:flutter_application_banca/view/inicio.dart';
 import 'package:flutter_application_banca/view/login.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:http/http.dart' as http;

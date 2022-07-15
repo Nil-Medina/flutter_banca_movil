@@ -1,4 +1,5 @@
-//
+// ignore_for_file: file_names
+
 import 'dart:convert';
 
 Users usersFromJson(String str) => Users.fromJson(json.decode(str));

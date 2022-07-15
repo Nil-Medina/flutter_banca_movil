@@ -1,3 +1,5 @@
+// ignore_for_file: avoid_unnecessary_containers
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/view/Notification.dart';
 import 'package:flutter_application_banca/view/RegTransaccion.dart';
@@ -210,11 +212,11 @@ class _PagePerfilState extends State<PagePerfil> {
                     child: Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
+                        children: const <Widget>[
                           /*const SizedBox(
                             height: 3,
                           ),*/
-                          const Text(
+                          Text(
                             "facebook",
                             style:
                                 TextStyle(color: Color.fromARGB(255, 0, 0, 0)),
@@ -234,11 +236,11 @@ class _PagePerfilState extends State<PagePerfil> {
                     child: Container(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
-                        children: <Widget>[
-                          const SizedBox(
+                        children: const <Widget>[
+                          SizedBox(
                             height: 3,
                           ),
-                          const Text(
+                          Text(
                             "Youtube",
                             style:
                                 TextStyle(color: Color.fromARGB(255, 0, 0, 0)),

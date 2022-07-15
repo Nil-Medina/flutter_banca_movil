@@ -1,6 +1,8 @@
 //
+// ignore_for_file: file_names
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/view/inicio.dart';
+//import 'package:flutter_application_banca/view/inicio.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class PagVerifications extends StatefulWidget {

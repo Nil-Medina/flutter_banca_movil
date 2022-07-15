@@ -1,3 +1,5 @@
+// ignore_for_file: unnecessary_null_comparison
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/entities/Data_Users.dart';
 import 'package:flutter_application_banca/service/users_service.dart';
@@ -11,14 +13,14 @@ class UsersProvider extends ChangeNotifier {
     }
 
     var service = UsersServices();
-    this.users = await service.obtenerAll();
+    users = await service.obtenerAll();
     notifyListeners();
     return users;
   }
 
   Future<List<Users>> refreshUsers() async {
     var service = UsersServices();
-    this.users = await service.obtenerAll();
+    users = await service.obtenerAll();
     notifyListeners();
     return users;
   }

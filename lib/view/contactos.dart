@@ -1,8 +1,8 @@
-import 'dart:async';
+//import 'dart:async';
 
-import 'package:firebase_auth/firebase_auth.dart';
+//import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_banca/view/contactos.dart';
+//import 'package:flutter_application_banca/view/contactos.dart';
 
 import 'package:url_launcher/url_launcher.dart';
 
@@ -40,7 +40,7 @@ class _ContactNew extends State<Contact> {
                       tileColor: Color.fromARGB(138, 29, 28, 28),
                       subtitle: Text('+51 901576482'),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
                     ListTile(
@@ -49,7 +49,7 @@ class _ContactNew extends State<Contact> {
                       tileColor: Colors.green,
                       subtitle: Text('+51 909754482'),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
                     ListTile(
@@ -58,7 +58,7 @@ class _ContactNew extends State<Contact> {
                       tileColor: Colors.green,
                       subtitle: Text('+51 99547482'),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
                     ListTile(
@@ -67,7 +67,7 @@ class _ContactNew extends State<Contact> {
                       tileColor: Colors.green,
                       subtitle: Text('+51 987646482'),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 10,
                     ),
                     ListTile(

@@ -1,4 +1,6 @@
 //import 'package:firebase_auth/firebase_auth.dart';
+// ignore_for_file: unused_local_variable
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_banca/entities/Data_Users.dart';
 //import 'package:flutter_application_banca/entities/users_provider.dart';
