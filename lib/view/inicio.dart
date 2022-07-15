@@ -34,9 +34,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  String mostrarsaldo = '0';
+
+  Future _login() async {
+    try {
+      final saldo = widget.datapage[widget.index]['saldo'].toString();
+      if (!mounted) return;
+      setState(() {
+        if (saldo == 'null') {
+          mostrarsaldo = '0';
+        } else {
+          mostrarsaldo = saldo;
+        }
+      });
+    } catch (e) {
+      mostrarsaldo = 'Error!';
+    }
+  }
+
   @override
   void initState() {
     super.initState();
+    _login();
   }
 
   @override
@@ -213,10 +232,7 @@ class _HomeState extends State<Home> {
                                 height: 5,
                               ),
                               Text(
-                                "S/." +
-                                    widget.datapage[widget.index]['saldo']
-                                        .toString() +
-                                    '.00',
+                                'S/.' + mostrarsaldo + '.00',
                                 style: const TextStyle(
                                     fontSize: 35,
                                     color: Colors.black,
@@ -369,8 +385,7 @@ class _HomeState extends State<Home> {
                                 ),
                                 subtitle: Text(
                                   'Saldo Disponible: S/.' +
-                                      widget.datapage[widget.index]['saldo']
-                                          .toString() +
+                                      mostrarsaldo +
                                       '.00',
                                   style: const TextStyle(fontSize: 17),
                                 ),
